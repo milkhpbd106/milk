@@ -1,54 +1,92 @@
-const music = new Audio('you-vietra.mp3');
-let firstVideo = document.getElementById('firstVideo');
-let secondVideo = document.getElementById('secondVideo');
-let messageBox = document.getElementById('messageBox');
-let giftBox = document.getElementById('giftBox');
-let giftImage = document.getElementById('giftImage');
-let openGiftButton = document.getElementById('openGiftButton');
+// script.js
 
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+const passwordScreen = document.getElementById('passwordScreen');
+const passwordInput = document.getElementById('passwordInput');
+const submitPassword = document.getElementById('submitPassword');
+const errorMessage = document.getElementById('errorMessage');
+const videoContainer = document.getElementById('videoContainer');
+const girlVideo = document.getElementById('girlVideo');
+const dreamyVideo = document.getElementById('dreamyVideo');
+const music = document.getElementById('bgMusic');
+const giftBtn = document.getElementById('openGiftButton');
+const giftImg = document.getElementById('giftImage');
+
+// Lời chúc đầu (3 câu)
+const messages1 = [
+  "🎉 Chúc mừng sinh nhật cậu 🎂",
+  "🌟 Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ 💫",
+  "🎁 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 💖"
+];
+
+// Lời chúc sau (2 câu)
+const messages2 = [
+  "🌸 Happy Birthday Milk 💖",
+  "Let’s step into a dreamy world together 🌈"
+];
+
+// Kiểm tra ngày
+function isToday106() {
+  const today = new Date();
+  return today.getMonth() === 5 && today.getDate() === 10; // Tháng 6 là số 5
 }
 
-async function startSequence() {
-  music.loop = true;
-  music.play();
-  firstVideo.play();
+// Hiện lời chúc với hiệu ứng
+function showMessages(messages, duration = 3000, fadeOut = 3000) {
+  return new Promise((resolve) => {
+    const container = document.createElement("div");
+    container.classList.add("message");
+    container.innerHTML = messages.map(msg => `<div>${msg}</div>`).join("");
+    document.body.appendChild(container);
 
-  // Hiện 3 lời chúc đầu tiên
-  messageBox.innerHTML = `
-    <div class="message fade-in-out">
-      <p>Chúc mừng sinh nhật cậu</p>
-      <p>Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ</p>
-      <p>Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu</p>
-    </div>`;
-
-  await delay(10000); // 7s hiển thị + 3s fade out
-
-  // Ẩn video đầu, hiện video dreamy tiếp theo
-  firstVideo.style.display = 'none';
-  secondVideo.style.display = 'block';
-  secondVideo.play();
-
-  // Hiện 2 câu chúc tiếp theo
-  messageBox.innerHTML = `
-    <div class="message fade-in-out">
-      <p>🌸 Happy Birthday Milk 💖</p>
-      <p>Let’s step into a dreamy world together</p>
-    </div>`;
-
-  await delay(6000); // 3s hiển thị + 3s fade out
-
-  // Hiện nút mở quà
-  openGiftButton.style.display = 'block';
+    setTimeout(() => {
+      container.style.opacity = "0";
+      setTimeout(() => {
+        container.remove();
+        resolve();
+      }, fadeOut);
+    }, duration);
+  });
 }
 
-openGiftButton.addEventListener('click', () => {
-  if (giftImage.style.display === 'block') {
-    giftImage.style.display = 'none';
+// Xử lý nút nhập mật khẩu
+submitPassword.addEventListener('click', () => {
+  const password = passwordInput.value;
+  if (password === 'Milk10/6') {
+    if (isToday106()) {
+      passwordScreen.style.display = 'none';
+      startSequence();
+    } else {
+      errorMessage.textContent = "Món quà có thể mở vào ngày 10/6 🎂";
+    }
   } else {
-    giftImage.style.display = 'block';
+    errorMessage.textContent = "Sai mật khẩu rồi đó 😢";
   }
 });
 
-window.addEventListener('load', startSequence);
+// Trình tự sau khi vào được
+async function startSequence() {
+  music.play();
+  girlVideo.style.display = "block";
+  girlVideo.play();
+
+  // Hiện lời chúc đầu 7s + fade out 3s
+  await showMessages(messages1, 7000, 3000);
+
+  // Khi video 1 kết thúc, ẩn nó và hiện video dreamy
+  girlVideo.addEventListener("ended", async () => {
+    girlVideo.style.display = "none";
+    dreamyVideo.style.display = "block";
+    dreamyVideo.play();
+
+    // Hiện lời chúc tiếp theo 3s + fade out 3s
+    await showMessages(messages2, 3000, 3000);
+
+    // Sau đó hiện nút mở quà
+    giftBtn.style.display = "inline-block";
+  });
+}
+
+// Mở/tắt món quà
+giftBtn.addEventListener('click', () => {
+  giftImg.style.display = giftImg.style.display === "block" ? "none" : "block";
+});
