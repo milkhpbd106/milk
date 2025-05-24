@@ -5,78 +5,125 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Milk's Dreamy Birthday</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <video id="firstVideo" src="milkdream.mp4" autoplay muted></video>
+  <!-- Màn hình nhập mật khẩu -->
+  <div id="passwordScreen">
+    <div class="password-container">
+      <i class="fa-solid fa-lock"></i>
+      <input type="password" id="passwordInput" placeholder="Nhập mật khẩu...">
+      <button id="submitPassword">Mở quà</button>
+    </div>
+  </div>
+
+  <video id="firstVideo" src="milkdream.mp4" muted></video>
   <video id="secondVideo" src="dreamy-video.mp4" loop muted></video>
 
-  <audio id="bgm" src="https://github.com/milkhpbd106/milk/blob/main/you-vietra.mp3" loop></audio>
+  <audio id="bgm" src="you-vietra.mp3" loop></audio>
 
   <!-- 3 lời chúc đầu -->
   <div id="message1" class="message fade-in-out-1" style="display:none">
-    <p>Chúc mừng sinh nhật cậu</p>
-    <p>Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ</p>
-    <p>Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu</p>
+    <p>🎂 Chúc mừng sinh nhật cậu 🎉</p>
+    <p>✨ Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ 🌸</p>
+    <p>🎁 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 💖</p>
   </div>
 
   <!-- 2 lời chúc sau -->
   <div id="message2" class="message fade-in-out-2" style="display:none">
     <p>🌸 Happy Birthday Milk 💖</p>
-    <p>Let’s step into a dreamy world together</p>
+    <p>Let’s step into a dreamy world together ✨</p>
   </div>
 
-  <button id="openGiftButton">Mở món quà dành riêng cho cậu</button>
+  <button id="openGiftButton">🎁 Mở món quà dành riêng cho cậu</button>
   <img id="giftImage" src="gift-image.png" alt="Món quà nhỏ xíu" />
 
   <script>
     window.addEventListener('load', () => {
-      const now = new Date();
-      const month = now.getMonth() + 1;
-      const day = now.getDate();
+      const submitPasswordBtn = document.getElementById('submitPassword');
+      const passwordInput = document.getElementById('passwordInput');
 
-      const isJune10 = (month === 6 && day === 10);
-      const password = prompt("Nhập mật khẩu:");
+      submitPasswordBtn.addEventListener('click', () => {
+        const password = passwordInput.value;
+        const now = new Date();
+        const isJune10 = (now.getMonth() + 1 === 6 && now.getDate() === 10);
 
-      if (password === "Milk10/6") {
-        if (!isJune10) {
-          alert("Món quà có thể mở vào ngày 10/6.");
-          return;
+        if (password === "Milk10/6") {
+          if (!isJune10) {
+            alert("Món quà có thể mở vào ngày 10/6.");
+            return;
+          }
+          document.getElementById('passwordScreen').style.display = 'none';
+          launchDream();
+        } else {
+          alert("Sai mật khẩu!");
         }
+      });
 
-        document.getElementById('bgm').play();
+      function launchDream() {
+        const bgm = document.getElementById('bgm');
+        const firstVideo = document.getElementById('firstVideo');
+        const secondVideo = document.getElementById('secondVideo');
+        const message1 = document.getElementById('message1');
+        const message2 = document.getElementById('message2');
+        const giftImage = document.getElementById('giftImage');
+        const openGiftButton = document.getElementById('openGiftButton');
 
-        // Giai đoạn 1: video 1 + nhạc + 3 lời chúc đầu
-        document.getElementById('message1').style.display = 'block';
+        firstVideo.style.display = 'block';
+        firstVideo.play();
+
+        // Phát nhạc
+        bgm.volume = 0.8;
+        bgm.play();
+
+        // Giai đoạn 1: video đầu + nhạc + 3 lời chúc đầu
+        message1.style.display = 'block';
 
         setTimeout(() => {
-          document.getElementById('message1').style.display = 'none';
-        }, 10000); // 7s hiện + 3s fade
+          message1.style.opacity = '0';
+        }, 7000);
 
-        // Giai đoạn 2: video dreamy loop + 2 lời chúc tiếp
         setTimeout(() => {
-          document.getElementById('firstVideo').style.display = 'none';
-          const secondVideo = document.getElementById('secondVideo');
-          secondVideo.style.display = 'block';
-          secondVideo.play();
-          document.getElementById('message2').style.display = 'block';
+          message1.style.display = 'none';
         }, 10000);
 
+        // Giai đoạn 2: chuyển video dreamy loop + 2 lời chúc tiếp
         setTimeout(() => {
-          document.getElementById('message2').style.display = 'none';
-        }, 16000); // sau 6s nữa
+          firstVideo.style.transition = 'opacity 2s ease';
+          firstVideo.style.opacity = '0';
 
-        // Giai đoạn 3: hiện nút mở quà
-        setTimeout(() => {
-          document.getElementById('openGiftButton').style.display = 'block';
-        }, 16000);
+          setTimeout(() => {
+            firstVideo.style.display = 'none';
+            secondVideo.style.display = 'block';
+            secondVideo.style.opacity = '0';
+            secondVideo.play();
 
-        // Hiệu ứng nút mở quà
-        document.getElementById('openGiftButton').addEventListener('click', () => {
-          const gift = document.getElementById('giftImage');
-          gift.style.display = (gift.style.display === 'block') ? 'none' : 'block';
+            setTimeout(() => {
+              secondVideo.style.transition = 'opacity 2s ease';
+              secondVideo.style.opacity = '1';
+            }, 50);
+
+            message2.style.display = 'block';
+
+            setTimeout(() => {
+              message2.style.opacity = '0';
+            }, 3000);
+
+            setTimeout(() => {
+              message2.style.display = 'none';
+            }, 6000);
+
+            // Giai đoạn 3: hiện nút mở quà
+            setTimeout(() => {
+              openGiftButton.style.display = 'block';
+            }, 6000);
+          }, 2000);
+        }, 10000);
+
+        // Tương tác nút mở quà
+        openGiftButton.addEventListener('click', () => {
+          giftImage.style.display = (giftImage.style.display === 'block') ? 'none' : 'block';
         });
-      } else {
-        alert("Sai mật khẩu!");
       }
     });
   </script>
