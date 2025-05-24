@@ -35,7 +35,7 @@ function isToday106() {
 
 // Hiện lời chúc với hiệu ứng
 function showMessages(messages, duration = 3000, fadeOut = 3000) {
-  return new Promise((resolve) => {
+//  return new Promise((resolve) => {
     const container = document.createElement("div");
     container.classList.add("message");
     container.innerHTML = messages.map(msg => `<div>${msg}</div>`).join("");
