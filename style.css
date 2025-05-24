@@ -1,56 +1,109 @@
-// script.js – Quản lý logic trình tự video, lời chúc, nhạc nền và mở quà
+/* style.css – Hiệu ứng giao diện thơ mộng dễ thương */
 
-const music = new Audio('you-vietra.mp3');
-let firstVideo = document.getElementById('firstVideo');
-let secondVideo = document.getElementById('secondVideo');
-let messageBox = document.getElementById('messageBox');
-let giftBox = document.getElementById('giftBox');
-let giftImage = document.getElementById('giftImage');
-let openGiftButton = document.getElementById('openGiftButton');
-
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+body {
+  margin: 0;
+  padding: 0;
+  background: #fefaff;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  color: #663399;
+  text-align: center;
 }
 
-async function startSequence() {
-  music.loop = true;
-  music.play();
-  firstVideo.play();
-
-  // Hiện 3 lời chúc đầu tiên
-  messageBox.innerHTML = `
-    <div class="message fade-in-out">
-      <p>Chúc mừng sinh nhật cậu</p>
-      <p>Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ</p>
-      <p>Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu</p>
-    </div>`;
-
-  await delay(10000); // 7s hiển thị + 3s fade out
-
-  // Ẩn video đầu, hiện video dreamy tiếp theo
-  firstVideo.style.display = 'none';
-  secondVideo.style.display = 'block';
-  secondVideo.play();
-
-  // Hiện 2 câu chúc tiếp theo
-  messageBox.innerHTML = `
-    <div class="message fade-in-out">
-      <p>🌸 Happy Birthday Milk 💖</p>
-      <p>Let’s step into a dreamy world together</p>
-    </div>`;
-
-  await delay(6000); // 3s hiển thị + 3s fade out
-
-  // Hiện nút mở quà
-  openGiftButton.style.display = 'block';
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  display: none;
 }
 
-openGiftButton.addEventListener('click', () => {
-  if (giftImage.style.display === 'block') {
-    giftImage.style.display = 'none';
-  } else {
-    giftImage.style.display = 'block';
-  }
-});
+#firstVideo {
+  display: block;
+}
 
-window.addEventListener('load', startSequence);
+.message {
+  position: fixed;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  padding: 20px;
+  color: #6a5acd;
+  font-size: 1.4rem;
+  font-weight: 500;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.fade-in-out-1 {
+  animation: fadeIn 1s ease-in, stay7 7s ease-in, fadeOut 3s ease-out;
+}
+
+.fade-in-out-2 {
+  animation: fadeIn 1s ease-in, stay3 3s ease-in, fadeOut 3s ease-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes stay7 {
+  0% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes stay3 {
+  0% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+#openGiftButton {
+  display: none;
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff0fb;
+  border: 2px solid #dab0ff;
+  border-radius: 20px;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  color: #a64ac9;
+  cursor: pointer;
+  z-index: 12;
+  transition: all 0.3s ease;
+}
+
+#openGiftButton:hover {
+  background: #f5d9ff;
+}
+
+#giftImage {
+  display: none;
+  max-width: 80vw;
+  max-height: 80vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255, 192, 255, 0.6);
+}
+
+/* Tông màu phụ: xanh nhạt, tím hồng nhạt */
+
+.butterfly, .rainbow, .bubble, .magic-dust, .star-twinkle {
+  pointer-events: none;
+}
