@@ -9,13 +9,15 @@
 </head>
 <body>
   <!-- Màn hình nhập mật khẩu -->
-  <div id="passwordScreen">
-    <div class="password-container">
-      <i class="fa-solid fa-lock"></i>
-      <input type="password" id="passwordInput" placeholder="Nhập mật khẩu...">
-      <button id="submitPassword">Mở quà</button>
-    </div>
+ <div id="passwordScreen">
+  <div class="password-container">
+    <p>Nhập mật khẩu để mở món quà 🎁</p>
+    <input type="password" id="passwordInput" placeholder="Mật khẩu">
+    <button id="submitPassword">Mở quà</button>
+    <p id="errorMessage" style="color: red;"></p>
   </div>
+</div>
+
 
   <video id="firstVideo" src="milkdream.mp4" muted></video>
   <video id="secondVideo" src="dreamy-video.mp4" loop muted></video>
