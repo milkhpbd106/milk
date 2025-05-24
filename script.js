@@ -28,6 +28,9 @@ const messages2 = [
 function isToday106() {
   const today = new Date();
   return true; // Tháng 6 là số 5
+  today.setMonth(5);  // Tháng 6 (vì tháng đếm từ 0)
+today.setDate(10);  // Ngày 10
+
 }
 
 // Hiện lời chúc với hiệu ứng
