@@ -24,15 +24,15 @@
   </div>
 
   <!-- Lời chúc cuối cùng -->
-  <div id="final-message" class="message">
+  <div id="final-message" class="message" style="display: none;">
     <p>🌸 Happy Birthday Milk 💖<br />Let’s step into a dreamy world together ✨</p>
   </div>
 
   <!-- Nút mở quà -->
-  <button id="gift-button" onclick="showGift()">🎁 Mở món quà</button>
+  <button id="gift-button" onclick="showGift()" style="display: none;">🎁 Mở món quà</button>
 
   <!-- Ảnh món quà -->
-  <div id="gift">
+  <div id="gift" style="display: none;">
     <img src="gift-image.jpg" alt="Món quà cho cậu" />
   </div>
 
