@@ -58,7 +58,7 @@ submitPassword.addEventListener('click', () => {
  //   if (isToday106()) {
   //  if (!isToday106()) {
 //  messageDiv.textContent = "Món quà có thể mở vào ngày 10/6.";
-//  return;
+  return;
     passwordScreen.style.display = 'none';
   startSequence();
 }
@@ -66,7 +66,7 @@ submitPassword.addEventListener('click', () => {
       passwordScreen.style.display = 'none';
       startSequence();
     } else {
-  //    errorMessage.textContent = "Món quà có thể mở vào ngày 10/6 🎂";
+      errorMessage.textContent = "Món quà có thể mở vào ngày 10/6 🎂";
     }
   } else {
     errorMessage.textContent = "Sai mật khẩu rồi đó 😢";
