@@ -1,36 +1,41 @@
-function checkPassword() {
-  const input = document.getElementById("password-input").value;
-  const overlay = document.getElementById("overlay");
-  const main = document.getElementById("main-content");
-  const video = document.getElementById("intro-video");
+document.addEventListener("DOMContentLoaded", function () {
+  const password = "Milk10/6";
+  const today = new Date();
+  const targetDate = new Date(today.getFullYear(), 5, 10); // Tháng 6 = 5
+
+  const introVideo = document.getElementById("intro-video");
   const loopVideo = document.getElementById("loop-video");
+  const bgMusic = document.getElementById("bg-music");
+  const mainContent = document.getElementById("main-content");
   const message = document.getElementById("message");
-  const music = document.getElementById("bg-music");
-  const error = document.getElementById("error-message");
+  const gift = document.getElementById("gift");
 
-  if (input === "Milk10/6") {
-    const today = new Date("2025-06-10"); // Giả lập ngày 10/6
+  const userPassword = prompt("Hãy nhập mật khẩu:");
 
-    if (today.getMonth() === 5 && today.getDate() === 10) {
-      overlay.style.display = "none";
-      main.style.display = "block";
-      video.style.display = "block";
-      video.play();
-      music.play();
-
-      video.onended = () => {
-        video.style.display = "none";
-        loopVideo.style.display = "block";
-        loopVideo.play();
-        message.style.display = "block";
-      };
-    } else {
-      error.textContent = "Món quà có thể mở vào ngày 10/6.";
-    }
-  } else {
-    error.textContent = "Sai mật khẩu rồi 😢";
+  if (userPassword !== password) {
+    alert("Sai mật khẩu rồi ạ :<");
+    return;
   }
-}
+
+  // Nếu chưa đến ngày 10/6
+  if (today < targetDate) {
+    document.body.innerHTML = "<h2 style='text-align:center; margin-top:20vh;'>Món quà có thể mở vào ngày 10/6 💝</h2>";
+    return;
+  }
+
+  // Nếu đúng ngày
+  introVideo.style.display = "block";
+  introVideo.play();
+
+  introVideo.onended = function () {
+    introVideo.style.display = "none";
+    mainContent.style.display = "block";
+    loopVideo.style.display = "block";
+    loopVideo.play();
+    bgMusic.play();
+    message.style.display = "block";
+  };
+});
 
 function showGift() {
   document.getElementById("gift").style.display = "block";
