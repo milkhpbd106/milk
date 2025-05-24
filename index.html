@@ -1,33 +1,46 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Milk 🎂✨</title>
+  <title>Happy Birthday Milk 🎂</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Video mở đầu -->
+  <video id="intro-video" src="milkdream.mp4" muted></video>
+  
+  <!-- Video nền mây lặp -->
+  <video id="loop-video" src="dreamy-video.mp4" loop muted></video>
+
+  <!-- Nhạc nền -->
   <audio id="bg-music" src="you-vietra.mp3" loop></audio>
 
-  <div id="main-content">
-    <video id="intro-video" src="milkdream.mp4" type="video/mp4"></video>
-    <video id="loop-video" src="dreamy-video.mp4" type="video/mp4" loop muted></video>
-
-    <div id="flower-container"></div>
-
-    <div id="initial-message" class="message dreamy">
-      <p>Chúc mừng sinh nhật cậu 💖</p>
-      <p>Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ ✨</p>
-      <p>Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 🎁</p>
-    </div>
-
-    <div id="final-message" class="message dreamy">
-      <p>🌸 Happy Birthday Milk 💖 Let’s step into a dreamy world together 🌈</p>
-    </div>
-
-    <button id="gift-button" onclick="showGift()">Mở món quà 🎁</button>
-    <img id="gift" src="gift-image.jpg.png" alt="Món quà nhỏ xinh" />
+  <!-- Lời chúc đầu tiên -->
+  <div id="initial-message" class="message">
+    <p>🎉 Chúc mừng sinh nhật cậu 🎉</p>
+    <p>💗 Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ 💗</p>
+    <p>🌸 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 🌸</p>
   </div>
+
+  <!-- Lời chúc cuối cùng -->
+  <div id="final-message" class="message">
+    <p>🌸 Happy Birthday Milk 💖<br />Let’s step into a dreamy world together ✨</p>
+  </div>
+
+  <!-- Nút mở quà -->
+  <button id="gift-button" onclick="showGift()">🎁 Mở món quà</button>
+
+  <!-- Ảnh món quà -->
+  <div id="gift">
+    <img src="gift-image.jpg" alt="Món quà cho cậu" />
+  </div>
+
+  <!-- Hiệu ứng bay lơ lửng -->
+  <div id="flower-container"></div>
+  <div id="bubble-container"></div>
+  <div id="sparkle-container"></div>
+  <div id="butterfly-container"></div>
 
   <script src="script.js"></script>
 </body>
