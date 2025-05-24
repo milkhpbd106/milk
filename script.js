@@ -1,18 +1,36 @@
-const password = "Milk10/6";
-const today = new Date("2025-06-10"); // Giả lập hôm nay là ngày 10/6
-const targetDate = new Date("2025-06-10");
+function checkPassword() {
+  const input = document.getElementById("password-input").value;
+  const overlay = document.getElementById("overlay");
+  const main = document.getElementById("main-content");
+  const message = document.getElementById("message");
+  const video = document.getElementById("intro-video");
+  const loopVideo = document.getElementById("loop-video");
+  const music = document.getElementById("bg-music");
+  const error = document.getElementById("error-message");
 
-function checkAccess() {
-    const input = prompt("Hãy nhập mật khẩu để mở quà:");
-    if (input === password) {
-        if (today.toDateString() === targetDate.toDateString()) {
-            document.getElementById("gift-section").style.display = "block";
-        } else {
-            alert("🎁 Món quà có thể mở vào ngày 10/6.");
-        }
+  if (input === "Milk10/6") {
+    const today = new Date();
+    if (today.getMonth() === 5 && today.getDate() === 10) {
+      overlay.style.display = "none";
+      main.style.display = "block";
+      video.style.display = "block";
+      video.play();
+      music.play();
+
+      video.onended = () => {
+        video.style.display = "none";
+        loopVideo.style.display = "block";
+        loopVideo.play();
+        message.style.display = "block";
+      };
     } else {
-        alert("Sai mật khẩu rồi 😢");
+      error.textContent = "Món quà có thể mở vào ngày 10/6.";
     }
+  } else {
+    error.textContent = "Sai mật khẩu rồi ạ 😢";
+  }
 }
 
-window.onload = checkAccess;
+function showGift() {
+  document.getElementById("gift").style.display = "block";
+}
