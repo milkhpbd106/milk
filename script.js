@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
     introVideo.style.display = "block";
     introVideo.play();
 
-    // Phát nhạc ngay
+    // Phát nhạc ngay lập tức với âm lượng nhẹ nhàng
+    bgMusic.volume = 0.4;
     bgMusic.play();
 
     // Hiện lời chúc đầu tiên sau 1s
@@ -37,17 +38,19 @@ document.addEventListener("DOMContentLoaded", function () {
       message.style.display = "block";
     }, 8000);
 
-    // Hiệu ứng hoa bay đáng yêu
+    // Hiệu ứng hoa bay dễ thương màu pastel
+    const flowerColors = ["#f8d5ec", "#e3d0ff", "#d6f5ff", "#fbe4ff", "#e0f7ff"];
     for (let i = 0; i < 25; i++) {
       const flower = document.createElement("div");
       flower.className = "flower";
       flower.style.left = Math.random() * 100 + "vw";
       flower.style.animationDelay = Math.random() * 10 + "s";
       flower.style.animationDuration = 4 + Math.random() * 6 + "s";
+      flower.style.backgroundColor = flowerColors[Math.floor(Math.random() * flowerColors.length)];
       flowerContainer.appendChild(flower);
     }
   } else {
-    alert("Sai mật khẩu rồi nè :<");
+    alert("Sai mật khẩu rồi nè :< Hãy thử lại nha ~");
   }
 });
 
