@@ -1,109 +1,90 @@
-/* style.css – Hiệu ứng giao diện thơ mộng dễ thương */
+/* style.css */
 
+/* Đặt font và màu nền */
 body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #f0f8ff, #e6e6fa);
+  color: #333;
+  text-align: center;
   margin: 0;
   padding: 0;
-  background: #fefaff;
-  overflow: hidden;
-  font-family: 'Segoe UI', sans-serif;
-  color: #663399;
-  text-align: center;
 }
 
-video {
+/* Màn hình nhập mật khẩu */
+#passwordScreen {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.password-container {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.password-container input {
+  padding: 10px;
+  margin-top: 10px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.password-container button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #add8e6;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Video */
+video {
+  width: 100%;
+  height: auto;
   display: none;
 }
 
-#firstVideo {
-  display: block;
-}
-
+/* Lời chúc */
 .message {
-  position: fixed;
-  top: 12%;
+  position: absolute;
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 16px;
-  padding: 20px;
-  color: #6a5acd;
-  font-size: 1.4rem;
-  font-weight: 500;
-  z-index: 10;
-  pointer-events: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px 30px;
+  border-radius: 10px;
+  font-size: 1.2em;
+  opacity: 1;
+  transition: opacity 3s ease;
 }
 
-.fade-in-out-1 {
-  animation: fadeIn 1s ease-in, stay7 7s ease-in, fadeOut 3s ease-out;
-}
-
-.fade-in-out-2 {
-  animation: fadeIn 1s ease-in, stay3 3s ease-in, fadeOut 3s ease-out;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes stay7 {
-  0% { opacity: 1; }
-  100% { opacity: 1; }
-}
-
-@keyframes stay3 {
-  0% { opacity: 1; }
-  100% { opacity: 1; }
-}
-
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
+/* Nút mở quà */
 #openGiftButton {
   display: none;
-  position: fixed;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff0fb;
-  border: 2px solid #dab0ff;
-  border-radius: 20px;
-  padding: 12px 24px;
-  font-size: 1.2rem;
-  color: #a64ac9;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #dda0dd;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  z-index: 12;
-  transition: all 0.3s ease;
 }
 
-#openGiftButton:hover {
-  background: #f5d9ff;
-}
-
+/* Ảnh món quà */
 #giftImage {
   display: none;
-  max-width: 80vw;
-  max-height: 80vh;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 11;
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(255, 192, 255, 0.6);
-}
-
-/* Tông màu phụ: xanh nhạt, tím hồng nhạt */
-
-.butterfly, .rainbow, .bubble, .magic-dust, .star-twinkle {
-  pointer-events: none;
+  margin-top: 20px;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
 }
