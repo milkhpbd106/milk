@@ -1,1 +1,134 @@
-<!DOCTYPE html><html><head><title>Happy Birthday</title></head><body><h1>Hello!</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Milk</title>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+    }
+    #overlay, #message, #finalMessage, #giftButton, #giftImage {
+      position: absolute;
+      z-index: 10;
+      width: 100%;
+    }
+    #message {
+      top: 20%;
+      font-size: 1.5em;
+      animation: fadeOut 2s ease-in-out 5s forwards;
+    }
+    #finalMessage {
+      top: 10%;
+      font-size: 2em;
+      opacity: 0;
+      animation: fadeIn 2s ease-in-out 6s forwards;
+    }
+    #giftButton {
+      top: 70%;
+      display: none;
+      animation: fadeIn 2s ease-in-out 7s forwards;
+    }
+    #giftButton button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: pink;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    #giftImage {
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    #giftImage img {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(255,255,255,0.3);
+    }
+
+    video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video cô gái ngắm mây -->
+  <video id="introVideo" autoplay muted>
+    <source src="milkdream.mp4" type="video/mp4">
+  </video>
+
+  <!-- Lời chúc ban đầu -->
+  <div id="message">
+    <p>Chúc mừng sinh nhật cậu 💖</p>
+    <p>Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ ✨</p>
+    <p>Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 🎁</p>
+  </div>
+
+  <!-- Dòng chữ chính sau intro -->
+  <div id="finalMessage">
+    <p>🌸 Happy Birthday Milk 💖</p>
+    <p>Let’s step into a dreamy world together.</p>
+  </div>
+
+  <!-- Nút mở quà -->
+  <div id="giftButton">
+    <button onclick="showGift()">🎁 Mở quà nhỏ</button>
+  </div>
+
+  <!-- Video nền mây chạy mãi -->
+  <video id="loopVideo" autoplay muted loop style="display:none;">
+    <source src="dreamy-video-mp4. (1).mp4" type="video/mp4">
+  </video>
+
+  <!-- Hình ảnh quà -->
+  <div id="giftImage" onclick="hideGift()">
+    <img src="yourgiftimage.jpg" alt="Gift Image">
+  </div>
+
+  <script>
+    // Sau 6 giây, chuyển sang nền mây và hiện thông điệp chính
+    setTimeout(() => {
+      document.getElementById('introVideo').style.display = 'none';
+      document.getElementById('loopVideo').style.display = 'block';
+      document.getElementById('giftButton').style.display = 'block';
+    }, 6000);
+
+    function showGift() {
+      document.getElementById('giftImage').style.display = 'flex';
+    }
+
+    function hideGift() {
+      document.getElementById('giftImage').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
