@@ -25,10 +25,10 @@ const messages2 = [
 ];
 
 // Kiểm tra ngày
-function isToday106() {
-  const today = new Date();
+//function isToday106() {
+//  const today = new Date();
 //  return today.getMonth() === 5 && today.getDate() === 10; // Tháng 6 là số 5
-  today.setMonth(5);  // Tháng 6 (vì tháng đếm từ 0)
+//  today.setMonth(5);  // Tháng 6 (vì tháng đếm từ 0)
   // Ngày 10
 
 //}
