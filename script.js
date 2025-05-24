@@ -62,3 +62,41 @@ document.addEventListener("DOMContentLoaded", function () {
 function showGift() {
   document.getElementById("gift").style.display = "block";
 }
+window.onload = function () {
+  const main = document.getElementById("main-content");
+  const introVideo = document.getElementById("intro-video");
+  const loopVideo = document.getElementById("loop-video");
+  const message = document.getElementById("message");
+  const finalMessage = document.getElementById("final-message");
+  const bgMusic = document.getElementById("bg-music");
+
+  main.style.display = "block";
+  bgMusic.play();
+
+  // Tạo hoa rơi
+  for (let i = 0; i < 20; i++) {
+    const flower = document.createElement("div");
+    flower.className = "flower";
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDelay = Math.random() * 10 + "s";
+    flower.style.animationDuration = 5 + Math.random() * 5 + "s";
+    document.getElementById("flower-container").appendChild(flower);
+  }
+
+  // Khi video intro kết thúc thì chuyển sang loop
+  introVideo.onended = function () {
+    introVideo.style.display = "none";
+    loopVideo.style.display = "block";
+    message.style.display = "block";
+
+    // Sau 7 giây thì hiện lời cuối
+    setTimeout(() => {
+      message.style.display = "none";
+      finalMessage.style.display = "block";
+    }, 7000);
+  };
+};
+
+function showGift() {
+  document.getElementById("gift").style.display = "block";
+}
