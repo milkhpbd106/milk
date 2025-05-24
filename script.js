@@ -25,17 +25,17 @@ const messages2 = [
 ];
 
 // Kiểm tra ngày
-//function isToday106() {
-//  const today = new Date();
-//  return today.getMonth() === 5 && today.getDate() === 10; // Tháng 6 là số 5
-//  today.setMonth(5);  // Tháng 6 (vì tháng đếm từ 0)
-  // Ngày 10
+function isToday106() {
+  const today = new Date();
+  return today.getMonth() === 5 && today.getDate() === 10; // Tháng 6 là số 5
+  today.setMonth(5);  // Tháng 6 (vì tháng đếm từ 0)
+    // Ngày 10
 
-//}
+}
 
 // Hiện lời chúc với hiệu ứng
 function showMessages(messages, duration = 3000, fadeOut = 3000) {
-//  return new Promise((resolve) => {
+  return new Promise((resolve) => {
     const container = document.createElement("div");
     container.classList.add("message");
     container.innerHTML = messages.map(msg => `<div>${msg}</div>`).join("");
@@ -56,6 +56,11 @@ submitPassword.addEventListener('click', () => {
   const password = passwordInput.value;
   if (password === 'Milk10/6') {
  //   if (isToday106()) {
+  //  if (!isToday106()) {
+//  messageDiv.textContent = "Món quà có thể mở vào ngày 10/6.";
+//  return;
+}
+
       passwordScreen.style.display = 'none';
       startSequence();
     } else {
