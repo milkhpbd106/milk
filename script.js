@@ -27,9 +27,9 @@ const messages2 = [
 // Kiểm tra ngày
 function isToday106() {
   const today = new Date();
-  return today.getMonth() === 5 && today.getDate() === 10 ; // Tháng 6 là số 5
+  return today.getMonth() === 5 && today.getDate() === 10; // Tháng 6 là số 5
   today.setMonth(5);  // Tháng 6 (vì tháng đếm từ 0)
-today.setDate(10);  // Ngày 10
+  // Ngày 10
 
 }
 
@@ -55,11 +55,11 @@ function showMessages(messages, duration = 3000, fadeOut = 3000) {
 submitPassword.addEventListener('click', () => {
   const password = passwordInput.value;
   if (password === 'Milk10/6') {
-    if (isToday106()) {
+ //   if (isToday106()) {
       passwordScreen.style.display = 'none';
       startSequence();
     } else {
-      errorMessage.textContent = "Món quà có thể mở vào ngày 10/6 🎂";
+  //    errorMessage.textContent = "Món quà có thể mở vào ngày 10/6 🎂";
     }
   } else {
     errorMessage.textContent = "Sai mật khẩu rồi đó 😢";
