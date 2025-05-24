@@ -3,44 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Milk 🎂</title>
+  <title>Happy Birthday Milk</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Video mở đầu -->
-  <video id="intro-video" src="milkdream.mp4" muted></video>
-
-  <!-- Video nền mây lặp -->
-  <video id="loop-video" src="dreamy-video.mp4" loop muted></video>
-
-  <!-- Nhạc nền -->
-  <audio id="bg-music" src="you-vietra.mp3" autoplay loop></audio>
-
-  <!-- Lời chúc đầu tiên -->
-  <div id="initial-message" class="message">
-    <p>🎉 Chúc mừng sinh nhật cậu 🎉</p>
-    <p>💗 Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ 💗</p>
-    <p>🌸 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 🌸</p>
+  <div id="video-wrapper">
+    <video id="mainVideo" src="milkdream.mp4" autoplay muted playsinline></video>
+    <video id="loopVideo" src="dreamy-video.mp4" loop muted playsinline style="display: none;"></video>
+    <audio id="bgm" src="you-vietra.mp3" autoplay loop></audio>
   </div>
 
-  <!-- Lời chúc cuối cùng -->
-  <div id="final-message" class="message">
-    <p>🌸 Happy Birthday Milk 💖<br />Let’s step into a dreamy world together ✨</p>
-  </div>
-
-  <!-- Nút mở quà -->
-  <button id="gift-button" onclick="showGift()">🎁 Mở món quà</button>
-
-  <!-- Ảnh món quà -->
-  <div id="gift">
-    <img src="gift-image.png" alt="Món quà cho cậu" />
-  </div>
-
-  <!-- Hiệu ứng bay lơ lửng -->
-  <div id="flower-container"></div>
-  <div id="bubble-container"></div>
-  <div id="sparkle-container"></div>
+  <div id="messages"></div>
+  <div class="rainbow"></div>
   <div id="butterfly-container"></div>
+  <div id="bubble-container"></div>
+  <div id="magic-container"></div>
+  <div id="star-container"></div>
+
+  <div id="gift-section">
+    <button id="openGift">🎁 Mở quà dành riêng cho cậu</button>
+    <img id="giftImage" class="gift-image" src="gift-image.png" alt="Gift Image" />
+  </div>
 
   <script src="script.js"></script>
 </body>
