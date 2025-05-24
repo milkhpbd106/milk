@@ -1,29 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy Birthday Milk</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="video-wrapper">
-    <video id="mainVideo" src="milkdream.mp4" autoplay muted playsinline></video>
-    <video id="loopVideo" src="dreamy-video.mp4" loop muted playsinline style="display: none;"></video>
-    <audio id="bgm" src="you-vietra.mp3" autoplay loop></audio>
-  </div>
+  <video id="firstVideo" src="milkdream.mp4" muted></video>
+  <video id="secondVideo" src="dreamy-video.mp4" muted loop></video>
 
-  <div id="messages"></div>
-  <div class="rainbow"></div>
-  <div id="butterfly-container"></div>
-  <div id="bubble-container"></div>
-  <div id="magic-container"></div>
-  <div id="star-container"></div>
+  <div id="messageBox"></div>
 
-  <div id="gift-section">
-    <button id="openGift">🎁 Mở quà dành riêng cho cậu</button>
-    <img id="giftImage" class="gift-image" src="gift-image.png" alt="Gift Image" />
-  </div>
+  <button id="openGiftButton">🎁 Mở quà dành riêng cho cậu</button>
+  <img id="giftImage" src="gift-image.png" alt="Món quà nhỏ xíu"/>
 
   <script src="script.js"></script>
 </body>
