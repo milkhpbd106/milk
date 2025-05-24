@@ -9,8 +9,7 @@ function checkPassword() {
   const error = document.getElementById("error-message");
 
   if (input === "Milk10/6") {
-    // const today = new Date();
-const today = new Date("2025-06-10"); // Giả lập ngày 10/6
+  const today = new Date("2025-06-10");
 
     if (today.getMonth() === 5 && today.getDate() === 10) {
       overlay.style.display = "none";
