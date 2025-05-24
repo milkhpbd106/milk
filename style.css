@@ -1,128 +1,56 @@
-/* Hiệu ứng bướm trắng xanh lấp lánh */
-.butterfly {
-  position: fixed;
-  top: -5vh;
-  width: 40px;
-  height: 40px;
-  background-image: url('https://cdn.jsdelivr.net/gh/mayocream/files@main/butterfly-blue-white.png');
-  background-size: cover;
-  opacity: 0.8;
-  animation: flyButterfly 11s linear infinite, fadeInOut 11s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 5;
+// script.js – Quản lý logic trình tự video, lời chúc, nhạc nền và mở quà
+
+const music = new Audio('you-vietra.mp3');
+let firstVideo = document.getElementById('firstVideo');
+let secondVideo = document.getElementById('secondVideo');
+let messageBox = document.getElementById('messageBox');
+let giftBox = document.getElementById('giftBox');
+let giftImage = document.getElementById('giftImage');
+let openGiftButton = document.getElementById('openGiftButton');
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-@keyframes flyButterfly {
-  0% {
-    transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+async function startSequence() {
+  music.loop = true;
+  music.play();
+  firstVideo.play();
+
+  // Hiện 3 lời chúc đầu tiên
+  messageBox.innerHTML = `
+    <div class="message fade-in-out">
+      <p>Chúc mừng sinh nhật cậu</p>
+      <p>Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ</p>
+      <p>Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu</p>
+    </div>`;
+
+  await delay(10000); // 7s hiển thị + 3s fade out
+
+  // Ẩn video đầu, hiện video dreamy tiếp theo
+  firstVideo.style.display = 'none';
+  secondVideo.style.display = 'block';
+  secondVideo.play();
+
+  // Hiện 2 câu chúc tiếp theo
+  messageBox.innerHTML = `
+    <div class="message fade-in-out">
+      <p>🌸 Happy Birthday Milk 💖</p>
+      <p>Let’s step into a dreamy world together</p>
+    </div>`;
+
+  await delay(6000); // 3s hiển thị + 3s fade out
+
+  // Hiện nút mở quà
+  openGiftButton.style.display = 'block';
+}
+
+openGiftButton.addEventListener('click', () => {
+  if (giftImage.style.display === 'block') {
+    giftImage.style.display = 'none';
+  } else {
+    giftImage.style.display = 'block';
   }
-  25% {
-    transform: translateY(25vh) translateX(-5vw) rotate(90deg) scale(1.1);
-  }
-  50% {
-    transform: translateY(50vh) translateX(5vw) rotate(180deg) scale(1);
-  }
-  75% {
-    transform: translateY(75vh) translateX(-3vw) rotate(270deg) scale(1.1);
-  }
-  100% {
-    transform: translateY(100vh) translateX(3vw) rotate(360deg) scale(1);
-  }
-}
+});
 
-@keyframes fadeInOut {
-  0% { opacity: 0; }
-  10% { opacity: 0.8; }
-  80% { opacity: 0.8; }
-  100% { opacity: 0; }
-}
-
-/* Hiệu ứng cầu vồng mềm mại */
-.rainbow {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60vw;
-  height: 30vh;
-  background: radial-gradient(circle at center, rgba(255, 182, 193, 0.4), rgba(173, 216, 230, 0.3), rgba(221, 160, 221, 0.2), rgba(255, 255, 224, 0.2));
-  border-radius: 50%;
-  animation: rainbowFade 12s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes rainbowFade {
-  0%, 100% { opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-}
-
-/* Bong bóng trong suốt bay nhẹ */
-.bubble {
-  position: absolute;
-  bottom: -10vh;
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, rgba(255,255,255,0.4), rgba(255,255,255,0));
-  border-radius: 50%;
-  animation: floatBubble 7s ease-in-out forwards;
-  opacity: 0.7;
-  z-index: 2;
-}
-
-@keyframes floatBubble {
-  0% { transform: translateY(0) scale(1); opacity: 0.7; }
-  70% { opacity: 0.9; }
-  100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
-}
-
-/* Bụi phép màu */
-.magic-dust {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: radial-gradient(circle, #ffffff, #ccf2ff);
-  border-radius: 50%;
-  animation: sparkle 9s linear infinite;
-  z-index: 3;
-  pointer-events: none;
-}
-
-@keyframes sparkle {
-  0% { transform: translate(0, 0); opacity: 1; }
-  50% { transform: translate(40vw, -40vh); opacity: 1; }
-  100% { transform: translate(80vw, -80vh); opacity: 0; }
-}
-
-/* Hiệu ứng mở quà phép màu */
-.gift-image {
-  max-width: 80%;
-  max-height: 80vh;
-  display: none;
-  margin: 20px auto;
-  animation: giftOpen 0.8s ease forwards;
-}
-
-@keyframes giftOpen {
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; filter: brightness(1.1); }
-}
-
-/* Hiệu ứng ngôi sao hoặc bụi phép màu bay qua */
-.star-twinkle {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: radial-gradient(circle, #ffffff, #fddfff);
-  border-radius: 50%;
-  animation: sparkleFly 9s linear infinite;
-  z-index: 4;
-  pointer-events: none;
-}
-
-@keyframes sparkleFly {
-  0% { transform: translate(0, 0); opacity: 1; }
-  50% { transform: translate(30vw, -40vh); opacity: 1; }
-  100% { transform: translate(60vw, -60vh); opacity: 0; }
-}
+window.addEventListener('load', startSequence);
