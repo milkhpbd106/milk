@@ -1,157 +1,47 @@
-/* 🌸 Giao diện mơ mộng, thơ ngây, đáng yêu 🌸 */
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  font-family: 'Comic Sans MS', cursive;
-  background: linear-gradient(to top, #fbefff, #e5f6ff);
-  color: #804d99;
-  text-align: center;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Milk 🎂</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Video mở đầu -->
+  <video id="intro-video" src="milkdream.mp4" muted></video>
 
-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -2;
-  display: none;
-}
+  <!-- Video nền mây lặp -->
+  <video id="loop-video" src="dreamy-video.mp4" loop muted></video>
 
-audio {
-  display: none;
-}
+  <!-- Nhạc nền -->
+  <audio id="bg-music" src="you-vietra.mp3" autoplay loop></audio>
 
-.message {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.6);
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(255, 200, 255, 0.8);
-  display: none;
-  font-size: 1.4rem;
-  line-height: 2.2rem;
-  animation: fadeIn 2s ease forwards;
-}
+  <!-- Lời chúc đầu tiên -->
+  <div id="initial-message" class="message">
+    <p>🎉 Chúc mừng sinh nhật cậu 🎉</p>
+    <p>💗 Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ 💗</p>
+    <p>🌸 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 🌸</p>
+  </div>
 
-#gift-button {
-  position: absolute;
-  bottom: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  background-color: #ffe3f3;
-  border: none;
-  border-radius: 25px;
-  box-shadow: 0 0 10px #ffbbf0;
-  cursor: pointer;
-  display: none;
-  animation: pulse 2s infinite;
-}
+  <!-- Lời chúc cuối cùng -->
+  <div id="final-message" class="message">
+    <p>🌸 Happy Birthday Milk 💖<br />Let’s step into a dreamy world together ✨</p>
+  </div>
 
-#gift {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: none;
-}
+  <!-- Nút mở quà -->
+  <button id="gift-button" onclick="showGift()">🎁 Mở món quà</button>
 
-#gift img {
-  width: 300px;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(255, 180, 255, 0.8);
-}
+  <!-- Ảnh món quà -->
+  <div id="gift">
+    <img src="gift-image.jpg" alt="Món quà cho cậu" />
+  </div>
 
-/* 🌸 Hiệu ứng hoa bay, bong bóng, lấp lánh, bướm 🌸 */
-#flower-container, #bubble-container, #sparkle-container, #butterfly-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 1;
-}
+  <!-- Hiệu ứng bay lơ lửng -->
+  <div id="flower-container"></div>
+  <div id="bubble-container"></div>
+  <div id="sparkle-container"></div>
+  <div id="butterfly-container"></div>
 
-.flower, .bubble, .sparkle, .butterfly {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  opacity: 0.8;
-  animation: floatUp 10s infinite;
-}
-
-.flower {
-  background-image: url('https://png.pngtree.com/png-clipart/20231018/original/pngtree-cute-floating-pink-cherry-blossom-transparent-png-image_13140111.png');
-  background-size: cover;
-}
-
-.bubble {
-  background-image: url('https://png.pngtree.com/png-clipart/20231010/original/pngtree-blue-transparent-bubble-png-image_13135958.png');
-  background-size: cover;
-}
-
-.sparkle {
-  background-image: url('https://png.pngtree.com/png-clipart/20230407/original/pngtree-twinkling-pink-star-sparkle-light-effect-png-image_9022300.png');
-  background-size: cover;
-}
-
-.butterfly {
-  background-image: url('https://png.pngtree.com/png-clipart/20230102/original/pngtree-blue-glow-butterfly-fairy-wings-png-image_8852408.png');
-  background-size: cover;
-  animation: floatButterfly 12s infinite;
-  transform: rotate(10deg);
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(100vh) scale(0.5);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-10vh) scale(1);
-    opacity: 0;
-  }
-}
-
-@keyframes floatButterfly {
-  0% {
-    transform: translate(0, 0) rotate(10deg);
-  }
-  50% {
-    transform: translate(100px, -200px) rotate(-10deg);
-  }
-  100% {
-    transform: translate(0, -400px) rotate(10deg);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    box-shadow: 0 0 10px #ffbbf0;
-  }
-  50% {
-    box-shadow: 0 0 20px #ff69b4;
-  }
-}
+  <script src="script.js"></script>
+</body>
+</html>
