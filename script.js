@@ -31,7 +31,7 @@ function isToday106() {
   today.setMonth(5);  // Tháng 6 (vì tháng đếm từ 0)
   // Ngày 10
 
-}
+//}
 
 // Hiện lời chúc với hiệu ứng
 function showMessages(messages, duration = 3000, fadeOut = 3000) {
