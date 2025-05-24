@@ -1,83 +1,83 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const password = "Milk10/6";
-  const userPassword = prompt("Hãy nhập mật khẩu để mở món quà:");
+const messages = document.getElementById("messages");
+const giftImage = document.getElementById("giftImage");
+const openGift = document.getElementById("openGift");
+const mainVideo = document.getElementById("mainVideo");
+const loopVideo = document.getElementById("loopVideo");
+const bgm = document.getElementById("bgm");
 
-  if (userPassword !== password) {
-    alert("Sai mật khẩu rồi nè :<");
-    return;
-  }
-
-  // Phát nhạc nền ngay lập tức
-  const bgMusic = document.getElementById("bg-music");
-  bgMusic.volume = 0.6;
-  bgMusic.play().catch(() => {
-    console.log("Autoplay bị chặn, đợi tương tác người dùng");
-  });
-
-  const introVideo = document.getElementById("intro-video");
-  const loopVideo = document.getElementById("loop-video");
-  const initialMessage = document.getElementById("initial-message");
-  const finalMessage = document.getElementById("final-message");
-  const message = document.querySelector(".message");
-
-  // Bắt đầu hiện intro video + lời chúc
-  introVideo.style.display = "block";
-  introVideo.play();
-
+const createMessage = (text, delay, duration) => {
   setTimeout(() => {
-    initialMessage.style.display = "block";
-  }, 1000);
+    const msg = document.createElement("div");
+    msg.className = "message";
+    msg.textContent = text;
+    messages.appendChild(msg);
 
-  // Sau 8 giây chuyển sang nền mây và lời chúc cuối
-  setTimeout(() => {
-    introVideo.style.display = "none";
-    initialMessage.style.display = "none";
-    loopVideo.style.display = "block";
-    loopVideo.play();
-    finalMessage.style.display = "block";
-    message.style.display = "block";
-  }, 8000);
+    setTimeout(() => {
+      msg.style.opacity = 0;
+      setTimeout(() => msg.remove(), 3000);
+    }, duration);
+  }, delay);
+};
 
-  // Tạo hiệu ứng hoa rơi 🌸
-  for (let i = 0; i < 20; i++) {
-    const flower = document.createElement("div");
-    flower.className = "flower";
-    flower.style.left = Math.random() * 100 + "vw";
-    flower.style.animationDelay = Math.random() * 10 + "s";
-    flower.style.animationDuration = 5 + Math.random() * 5 + "s";
-    document.getElementById("flower-container").appendChild(flower);
-  }
+// 3 câu chúc đầu - hiện 7s, biến mất trong 3s
+createMessage("Chúc mừng sinh nhật cậu", 1000, 7000);
+createMessage("Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ", 1000, 7000);
+createMessage("Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu", 1000, 7000);
 
-  // Bong bóng bay lên 💭
-  for (let i = 0; i < 15; i++) {
-    const bubble = document.createElement("div");
-    bubble.className = "bubble";
-    bubble.style.left = Math.random() * 100 + "vw";
-    bubble.style.animationDelay = Math.random() * 10 + "s";
-    document.getElementById("bubble-container").appendChild(bubble);
-  }
+// Chuyển sang video nền mây + 2 câu chúc tiếp theo
+mainVideo.addEventListener("ended", () => {
+  mainVideo.style.display = "none";
+  loopVideo.style.display = "block";
+  loopVideo.play();
 
-  // Lấp lánh ánh sáng ✨
-  for (let i = 0; i < 30; i++) {
-    const sparkle = document.createElement("div");
-    sparkle.className = "sparkle";
-    sparkle.style.left = Math.random() * 100 + "vw";
-    sparkle.style.animationDelay = Math.random() * 5 + "s";
-    document.getElementById("sparkle-container").appendChild(sparkle);
-  }
-
-  // Bướm trắng xanh bay lượn 🦋
-  for (let i = 0; i < 6; i++) {
-    const butterfly = document.createElement("div");
-    butterfly.className = "butterfly";
-    butterfly.style.left = Math.random() * 100 + "vw";
-    butterfly.style.animationDelay = Math.random() * 5 + "s";
-    document.getElementById("butterfly-container").appendChild(butterfly);
-  }
+  createMessage("🌸 Happy Birthday Milk 💖", 500, 3000);
+  createMessage("Let’s step into a dreamy world together", 500, 3000);
 });
 
-// Khi nhấn nút hiện ảnh quà 🎁
-function showGift() {
-  const gift = document.getElementById("gift");
-  gift.style.display = "block";
+// Mở / đóng ảnh quà
+openGift.addEventListener("click", () => {
+  giftImage.style.display =
+    giftImage.style.display === "none" ? "block" : "none";
+});
+
+// Tạo hiệu ứng bướm bay lặp lại
+function spawnButterfly() {
+  const butterfly = document.createElement("div");
+  butterfly.className = "butterfly";
+  butterfly.style.left = `${Math.random() * 100}vw`;
+  document.getElementById("butterfly-container").appendChild(butterfly);
+  setTimeout(() => butterfly.remove(), 11000);
 }
+setInterval(spawnButterfly, 11000);
+
+// Tạo hiệu ứng bong bóng nhẹ nhàng
+function spawnBubble() {
+  const bubble = document.createElement("div");
+  bubble.className = "bubble";
+  bubble.style.left = `${Math.random() * 100}vw`;
+  document.getElementById("bubble-container").appendChild(bubble);
+  setTimeout(() => bubble.remove(), 7000);
+}
+setInterval(spawnBubble, 2000);
+
+// Tạo hiệu ứng bụi phép màu
+function spawnMagic() {
+  const dust = document.createElement("div");
+  dust.className = "magic-dust";
+  dust.style.left = `${Math.random() * 100}vw`;
+  dust.style.top = `${Math.random() * 100}vh`;
+  document.getElementById("magic-container").appendChild(dust);
+  setTimeout(() => dust.remove(), 9000);
+}
+setInterval(spawnMagic, 3000);
+
+// Tạo hiệu ứng sao bay
+function spawnStar() {
+  const star = document.createElement("div");
+  star.className = "star-twinkle";
+  star.style.left = `${Math.random() * 100}vw`;
+  star.style.top = `${Math.random() * 100}vh`;
+  document.getElementById("star-container").appendChild(star);
+  setTimeout(() => star.remove(), 9000);
+}
+setInterval(spawnStar, 5000);
