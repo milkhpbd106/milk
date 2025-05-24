@@ -1,59 +1,100 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const password = "Milk10/6";
+/* style.css - Giao diện cổ tích, mơ mộng và dễ thương */
 
-  // Tạm bỏ kiểm tra ngày để test
-  const userPassword = prompt("✨ Hãy nhập mật khẩu để mở hộp quà mộng mơ nhé ✨");
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffeef8;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  overflow: hidden;
+  color: #ff66a3;
+  text-align: center;
+}
 
-  if (userPassword === password) {
-    const introVideo = document.getElementById("intro-video");
-    const loopVideo = document.getElementById("loop-video");
-    const bgMusic = document.getElementById("bg-music");
-    const message = document.getElementById("message");
-    const gift = document.getElementById("gift");
-    const initialMessage = document.getElementById("initial-message");
-    const finalMessage = document.getElementById("final-message");
-    const flowerContainer = document.getElementById("flower-container");
-    const mainContent = document.getElementById("main-content");
+.video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  display: none;
+}
 
-    mainContent.style.display = "block";
-    introVideo.style.display = "block";
-    introVideo.play();
+.message, .final-message {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 240, 250, 0.8);
+  border-radius: 24px;
+  padding: 24px;
+  max-width: 90%;
+  box-shadow: 0 0 20px #ffb6c1;
+  animation: fadeIn 2s ease;
+  display: none;
+  font-size: 1.4rem;
+  line-height: 2;
+}
 
-    // Phát nhạc ngay lập tức với âm lượng nhẹ nhàng
-    bgMusic.volume = 0.4;
-    bgMusic.play();
+.final-message button {
+  margin-top: 16px;
+  background-color: #ff66a3;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
-    // Hiện lời chúc đầu tiên sau 1s
-    setTimeout(() => {
-      initialMessage.style.display = "block";
-    }, 1000);
+.final-message button:hover {
+  background-color: #ff3385;
+}
 
-    // Sau 8s, chuyển sang video mây và hiển thị lời chúc cuối
-    setTimeout(() => {
-      introVideo.style.display = "none";
-      initialMessage.style.display = "none";
-      loopVideo.style.display = "block";
-      loopVideo.play();
-      finalMessage.style.display = "block";
-      message.style.display = "block";
-    }, 8000);
+.gift-image {
+  margin-top: 20px;
+  max-width: 300px;
+  width: 80%;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(255, 182, 193, 0.8);
+}
 
-    // Hiệu ứng hoa bay dễ thương màu pastel
-    const flowerColors = ["#f8d5ec", "#e3d0ff", "#d6f5ff", "#fbe4ff", "#e0f7ff"];
-    for (let i = 0; i < 25; i++) {
-      const flower = document.createElement("div");
-      flower.className = "flower";
-      flower.style.left = Math.random() * 100 + "vw";
-      flower.style.animationDelay = Math.random() * 10 + "s";
-      flower.style.animationDuration = 4 + Math.random() * 6 + "s";
-      flower.style.backgroundColor = flowerColors[Math.floor(Math.random() * flowerColors.length)];
-      flowerContainer.appendChild(flower);
-    }
-  } else {
-    alert("💫 Sai mật khẩu rồi nè ~ Thử lại một lần nữa nha! 💖");
+#flower-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.flower {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/477/477103.png');
+  background-size: cover;
+  animation-name: floatDown;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+}
+
+@keyframes floatDown {
+  from {
+    top: -10%;
+    opacity: 1;
   }
-});
+  to {
+    top: 110%;
+    opacity: 0;
+  }
+}
 
-function showGift() {
-  document.getElementById("gift").style.display = "block";
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
