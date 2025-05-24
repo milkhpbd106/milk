@@ -5,6 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday Milk</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #fefcff;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+    .message, .final-message {
+      position: absolute;
+      top: 20%;
+      width: 100%;
+      text-align: center;
+      color: #fff0f5;
+      font-size: 1.5em;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+    .button-container {
+      position: absolute;
+      bottom: 10%;
+      width: 100%;
+      text-align: center;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: #ffcce0;
+      border: none;
+      border-radius: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .flower {
+      position: absolute;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Cherry_blossom_icon.svg/1024px-Cherry_blossom_icon.svg.png');
+      background-size: cover;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+  </style>
 </head>
 <body>
   <audio id="bg-music" src="you-vietra.mp3" loop></audio>
@@ -27,7 +79,7 @@
       <button onclick="showGift()">🎁 Mở quà</button>
     </div>
 
-    <div id="gift" class="gift" style="display: none">
+    <div id="gift" class="gift" style="display: none; text-align: center;">
       <img src="gift.jpg" alt="gift" style="max-width: 90%; border-radius: 20px; box-shadow: 0 0 20px white" />
     </div>
 
@@ -37,7 +89,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const password = "Milk10/6";
-      const isJune10 = true; // tạm bật test giao diện
+      const isJune10 = true;
 
       const userPassword = prompt("Hãy nhập mật khẩu để mở món quà:");
 
@@ -54,13 +106,21 @@
         const gift = document.getElementById("gift");
         const initialMessage = document.getElementById("initial-message");
         const finalMessage = document.getElementById("final-message");
-
         const mainContent = document.getElementById("main-content");
-        mainContent.style.display = "block";
 
+        mainContent.style.display = "block";
         introVideo.style.display = "block";
         introVideo.play();
-        bgMusic.play();
+
+        const playMusic = () => {
+          bgMusic.play().catch(() => {
+            document.body.addEventListener("click", () => {
+              bgMusic.play();
+            }, { once: true });
+          });
+        };
+
+        playMusic();
 
         setTimeout(() => {
           initialMessage.style.display = "block";
