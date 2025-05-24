@@ -27,7 +27,7 @@ const messages2 = [
 // Kiểm tra ngày
 function isToday106() {
   const today = new Date();
-  return today.getMonth() === 5 && today.getDate() === 10; // Tháng 6 là số 5
+  return true; // Tháng 6 là số 5
 }
 
 // Hiện lời chúc với hiệu ứng
