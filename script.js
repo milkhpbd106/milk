@@ -1,83 +1,54 @@
-const messages = document.getElementById("messages");
-const giftImage = document.getElementById("giftImage");
-const openGift = document.getElementById("openGift");
-const mainVideo = document.getElementById("mainVideo");
-const loopVideo = document.getElementById("loopVideo");
-const bgm = document.getElementById("bgm");
+const music = new Audio('you-vietra.mp3');
+let firstVideo = document.getElementById('firstVideo');
+let secondVideo = document.getElementById('secondVideo');
+let messageBox = document.getElementById('messageBox');
+let giftBox = document.getElementById('giftBox');
+let giftImage = document.getElementById('giftImage');
+let openGiftButton = document.getElementById('openGiftButton');
 
-const createMessage = (text, delay, duration) => {
-  setTimeout(() => {
-    const msg = document.createElement("div");
-    msg.className = "message";
-    msg.textContent = text;
-    messages.appendChild(msg);
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-    setTimeout(() => {
-      msg.style.opacity = 0;
-      setTimeout(() => msg.remove(), 3000);
-    }, duration);
-  }, delay);
-};
+async function startSequence() {
+  music.loop = true;
+  music.play();
+  firstVideo.play();
 
-// 3 câu chúc đầu - hiện 7s, biến mất trong 3s
-createMessage("Chúc mừng sinh nhật cậu", 1000, 7000);
-createMessage("Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ", 1000, 7000);
-createMessage("Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu", 1000, 7000);
+  // Hiện 3 lời chúc đầu tiên
+  messageBox.innerHTML = `
+    <div class="message fade-in-out">
+      <p>Chúc mừng sinh nhật cậu</p>
+      <p>Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ</p>
+      <p>Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu</p>
+    </div>`;
 
-// Chuyển sang video nền mây + 2 câu chúc tiếp theo
-mainVideo.addEventListener("ended", () => {
-  mainVideo.style.display = "none";
-  loopVideo.style.display = "block";
-  loopVideo.play();
+  await delay(10000); // 7s hiển thị + 3s fade out
 
-  createMessage("🌸 Happy Birthday Milk 💖", 500, 3000);
-  createMessage("Let’s step into a dreamy world together", 500, 3000);
+  // Ẩn video đầu, hiện video dreamy tiếp theo
+  firstVideo.style.display = 'none';
+  secondVideo.style.display = 'block';
+  secondVideo.play();
+
+  // Hiện 2 câu chúc tiếp theo
+  messageBox.innerHTML = `
+    <div class="message fade-in-out">
+      <p>🌸 Happy Birthday Milk 💖</p>
+      <p>Let’s step into a dreamy world together</p>
+    </div>`;
+
+  await delay(6000); // 3s hiển thị + 3s fade out
+
+  // Hiện nút mở quà
+  openGiftButton.style.display = 'block';
+}
+
+openGiftButton.addEventListener('click', () => {
+  if (giftImage.style.display === 'block') {
+    giftImage.style.display = 'none';
+  } else {
+    giftImage.style.display = 'block';
+  }
 });
 
-// Mở / đóng ảnh quà
-openGift.addEventListener("click", () => {
-  giftImage.style.display =
-    giftImage.style.display === "none" ? "block" : "none";
-});
-
-// Tạo hiệu ứng bướm bay lặp lại
-function spawnButterfly() {
-  const butterfly = document.createElement("div");
-  butterfly.className = "butterfly";
-  butterfly.style.left = `${Math.random() * 100}vw`;
-  document.getElementById("butterfly-container").appendChild(butterfly);
-  setTimeout(() => butterfly.remove(), 11000);
-}
-setInterval(spawnButterfly, 11000);
-
-// Tạo hiệu ứng bong bóng nhẹ nhàng
-function spawnBubble() {
-  const bubble = document.createElement("div");
-  bubble.className = "bubble";
-  bubble.style.left = `${Math.random() * 100}vw`;
-  document.getElementById("bubble-container").appendChild(bubble);
-  setTimeout(() => bubble.remove(), 7000);
-}
-setInterval(spawnBubble, 2000);
-
-// Tạo hiệu ứng bụi phép màu
-function spawnMagic() {
-  const dust = document.createElement("div");
-  dust.className = "magic-dust";
-  dust.style.left = `${Math.random() * 100}vw`;
-  dust.style.top = `${Math.random() * 100}vh`;
-  document.getElementById("magic-container").appendChild(dust);
-  setTimeout(() => dust.remove(), 9000);
-}
-setInterval(spawnMagic, 3000);
-
-// Tạo hiệu ứng sao bay
-function spawnStar() {
-  const star = document.createElement("div");
-  star.className = "star-twinkle";
-  star.style.left = `${Math.random() * 100}vw`;
-  star.style.top = `${Math.random() * 100}vh`;
-  document.getElementById("star-container").appendChild(star);
-  setTimeout(() => star.remove(), 9000);
-}
-setInterval(spawnStar, 5000);
+window.addEventListener('load', startSequence);
