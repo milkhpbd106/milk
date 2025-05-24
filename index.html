@@ -3,34 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎂 Happy Birthday Milk 🎀</title>
+  <title>Happy Birthday Milk 🎂✨</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <audio id="bg-music" src="you-vietra.mp3" loop></audio>
 
-  <div id="main-content" style="display: none">
-    <video id="intro-video" src="milkdream.mp4" class="video" muted></video>
-    <video id="loop-video" src="dreamy-video.mp4" class="video" muted loop></video>
+  <div id="main-content">
+    <video id="intro-video" src="milkdream.mp4" type="video/mp4"></video>
+    <video id="loop-video" src="dreamy-video.mp4" type="video/mp4" loop muted></video>
 
-    <div id="initial-message" class="message">
-      <p>🌟 Chúc mừng sinh nhật cậu ~</p>
-      <p>✨ Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ ✨</p>
-      <p>💝 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 💝</p>
+    <div id="flower-container"></div>
+
+    <div id="initial-message" class="message dreamy">
+      <p>Chúc mừng sinh nhật cậu 💖</p>
+      <p>Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ ✨</p>
+      <p>Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 🎁</p>
     </div>
 
-    <div id="final-message" class="final-message">
-      <p>🌸 Happy Birthday Milk 💖</p>
-      <p>Let’s step into a dreamy world together ✨</p>
-      <button onclick="showGift()">🎁 Mở Quà 🎁</button>
+    <div id="final-message" class="message dreamy">
+      <p>🌸 Happy Birthday Milk 💖 Let’s step into a dreamy world together 🌈</p>
     </div>
 
-    <div id="gift" style="display: none">
-      <img src="gift-image.png" alt="Món quà nhỏ xinh" class="gift-image" />
-    </div>
+    <button id="gift-button" onclick="showGift()">Mở món quà 🎁</button>
+    <img id="gift" src="gift-image.jpg.png" alt="Món quà nhỏ xinh" />
   </div>
 
-  <div id="flower-container"></div>
   <script src="script.js"></script>
 </body>
 </html>
