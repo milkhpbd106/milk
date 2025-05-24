@@ -1,100 +1,157 @@
-/* style.css - Giao diện cổ tích, mơ mộng và dễ thương */
-
+/* 🌸 Giao diện mơ mộng, thơ ngây, đáng yêu 🌸 */
 body {
   margin: 0;
   padding: 0;
-  background: #ffeef8;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
   overflow: hidden;
-  color: #ff66a3;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(to top, #fbefff, #e5f6ff);
+  color: #804d99;
   text-align: center;
 }
 
-.video {
+video {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: -1;
+  z-index: -2;
   display: none;
 }
 
-.message, .final-message {
+audio {
+  display: none;
+}
+
+.message {
   position: absolute;
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 240, 250, 0.8);
-  border-radius: 24px;
-  padding: 24px;
-  max-width: 90%;
-  box-shadow: 0 0 20px #ffb6c1;
-  animation: fadeIn 2s ease;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 200, 255, 0.8);
   display: none;
   font-size: 1.4rem;
-  line-height: 2;
+  line-height: 2.2rem;
+  animation: fadeIn 2s ease forwards;
 }
 
-.final-message button {
-  margin-top: 16px;
-  background-color: #ff66a3;
-  color: white;
+#gift-button {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 30px;
   font-size: 1.2rem;
+  background-color: #ffe3f3;
   border: none;
-  padding: 12px 24px;
-  border-radius: 12px;
+  border-radius: 25px;
+  box-shadow: 0 0 10px #ffbbf0;
   cursor: pointer;
-  transition: background 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: none;
+  animation: pulse 2s infinite;
 }
 
-.final-message button:hover {
-  background-color: #ff3385;
+#gift {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
 }
 
-.gift-image {
-  margin-top: 20px;
-  max-width: 300px;
-  width: 80%;
+#gift img {
+  width: 300px;
   border-radius: 20px;
-  box-shadow: 0 0 15px rgba(255, 182, 193, 0.8);
+  box-shadow: 0 0 30px rgba(255, 180, 255, 0.8);
 }
 
-#flower-container {
-  position: fixed;
+/* 🌸 Hiệu ứng hoa bay, bong bóng, lấp lánh, bướm 🌸 */
+#flower-container, #bubble-container, #sparkle-container, #butterfly-container {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 10;
+  z-index: 1;
 }
 
-.flower {
+.flower, .bubble, .sparkle, .butterfly {
   position: absolute;
   width: 30px;
   height: 30px;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/477/477103.png');
-  background-size: cover;
-  animation-name: floatDown;
-  animation-timing-function: ease-in;
-  animation-iteration-count: infinite;
+  opacity: 0.8;
+  animation: floatUp 10s infinite;
 }
 
-@keyframes floatDown {
-  from {
-    top: -10%;
+.flower {
+  background-image: url('https://png.pngtree.com/png-clipart/20231018/original/pngtree-cute-floating-pink-cherry-blossom-transparent-png-image_13140111.png');
+  background-size: cover;
+}
+
+.bubble {
+  background-image: url('https://png.pngtree.com/png-clipart/20231010/original/pngtree-blue-transparent-bubble-png-image_13135958.png');
+  background-size: cover;
+}
+
+.sparkle {
+  background-image: url('https://png.pngtree.com/png-clipart/20230407/original/pngtree-twinkling-pink-star-sparkle-light-effect-png-image_9022300.png');
+  background-size: cover;
+}
+
+.butterfly {
+  background-image: url('https://png.pngtree.com/png-clipart/20230102/original/pngtree-blue-glow-butterfly-fairy-wings-png-image_8852408.png');
+  background-size: cover;
+  animation: floatButterfly 12s infinite;
+  transform: rotate(10deg);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+  50% {
     opacity: 1;
   }
-  to {
-    top: 110%;
+  100% {
+    transform: translateY(-10vh) scale(1);
     opacity: 0;
   }
 }
 
+@keyframes floatButterfly {
+  0% {
+    transform: translate(0, 0) rotate(10deg);
+  }
+  50% {
+    transform: translate(100px, -200px) rotate(-10deg);
+  }
+  100% {
+    transform: translate(0, -400px) rotate(10deg);
+  }
+}
+
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px #ffbbf0;
+  }
+  50% {
+    box-shadow: 0 0 20px #ff69b4;
+  }
 }
