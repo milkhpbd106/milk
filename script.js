@@ -2,18 +2,20 @@ function checkPassword() {
   const input = document.getElementById("password-input").value;
   const overlay = document.getElementById("overlay");
   const main = document.getElementById("main-content");
-  const message = document.getElementById("message");
-  const video = document.getElementById("intro-video");
+  const video = document.getElementById("video");
   const loopVideo = document.getElementById("loop-video");
+  const message = document.getElementById("message");
   const music = document.getElementById("bg-music");
   const error = document.getElementById("error-message");
 
+  // Kiểm tra mật khẩu
   if (input === "Milk10/6") {
-  const today = new Date("2025-06-10");
+    // Giả lập ngày 10/6 để test thử
+    const today = new Date("2025-06-10");
 
     if (today.getMonth() === 5 && today.getDate() === 10) {
       overlay.style.display = "none";
-      main.style.display = "block";
+      main.style.display = "none";
       video.style.display = "block";
       video.play();
       music.play();
@@ -28,11 +30,7 @@ function checkPassword() {
       error.textContent = "Món quà có thể mở vào ngày 10/6.";
     }
   } else {
-    error.textContent = "Sai mật khẩu rồi ạ 😢";
+    error.textContent = "Sai mật khẩu rồi 😢";
   }
-}
-
-function showGift() {
-  document.getElementById("gift").style.display = "block";
 }
 
