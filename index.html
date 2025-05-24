@@ -1,30 +1,84 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Milk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milk's Dreamy Birthday</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Video mở đầu -->
-  <video id="firstVideo" src="milkdream.mp4" muted></video>
-  
-  <!-- Video nền mây mộng mơ -->
-  <video id="secondVideo" src="dreamy-video.mp4" muted loop></video>
+  <video id="firstVideo" src="milkdream.mp4" autoplay muted></video>
+  <video id="secondVideo" src="dreamy-video.mp4" loop muted></video>
 
-  <!-- Nhạc nền -->
-  <audio id="bgMusic" src="you-vietra.mp3" preload="auto"></audio>
+  <audio id="bgm" src="you-vietra.mp3" loop></audio>
 
-  <!-- Khung lời chúc -->
-  <div id="messageBox"></div>
+  <!-- 3 lời chúc đầu -->
+  <div id="message1" class="message fade-in-out-1" style="display:none">
+    <p>Chúc mừng sinh nhật cậu</p>
+    <p>Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ</p>
+    <p>Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu</p>
+  </div>
 
-  <!-- Nút mở quà -->
-  <button id="openGiftButton">🎁 Mở quà dành riêng cho cậu</button>
+  <!-- 2 lời chúc sau -->
+  <div id="message2" class="message fade-in-out-2" style="display:none">
+    <p>🌸 Happy Birthday Milk 💖</p>
+    <p>Let’s step into a dreamy world together</p>
+  </div>
 
-  <!-- Ảnh món quà -->
-  <img id="giftImage" src="gift-image.png" alt="Món quà nhỏ xíu"/>
+  <button id="openGiftButton">Mở món quà dành riêng cho cậu</button>
+  <img id="giftImage" src="gift-image.png" alt="Món quà nhỏ xíu" />
 
-  <script src="script.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      const now = new Date();
+      const month = now.getMonth() + 1;
+      const day = now.getDate();
+
+      const isJune10 = (month === 6 && day === 10);
+      const password = prompt("Nhập mật khẩu:");
+
+      if (password === "Milk10/6") {
+        if (!isJune10) {
+          alert("Món quà có thể mở vào ngày 10/6.");
+          return;
+        }
+
+        document.getElementById('bgm').play();
+
+        // Giai đoạn 1: video 1 + nhạc + 3 lời chúc đầu
+        document.getElementById('message1').style.display = 'block';
+
+        setTimeout(() => {
+          document.getElementById('message1').style.display = 'none';
+        }, 10000); // 7s hiện + 3s fade
+
+        // Giai đoạn 2: video dreamy loop + 2 lời chúc tiếp
+        setTimeout(() => {
+          document.getElementById('firstVideo').style.display = 'none';
+          const secondVideo = document.getElementById('secondVideo');
+          secondVideo.style.display = 'block';
+          secondVideo.play();
+          document.getElementById('message2').style.display = 'block';
+        }, 10000);
+
+        setTimeout(() => {
+          document.getElementById('message2').style.display = 'none';
+        }, 16000); // sau 6s nữa
+
+        // Giai đoạn 3: hiện nút mở quà
+        setTimeout(() => {
+          document.getElementById('openGiftButton').style.display = 'block';
+        }, 16000);
+
+        // Hiệu ứng nút mở quà
+        document.getElementById('openGiftButton').addEventListener('click', () => {
+          const gift = document.getElementById('giftImage');
+          gift.style.display = (gift.style.display === 'block') ? 'none' : 'block';
+        });
+      } else {
+        alert("Sai mật khẩu!");
+      }
+    });
+  </script>
 </body>
 </html>
