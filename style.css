@@ -171,3 +171,42 @@ body, html {
     transform: scale(1);
   }
 }
+/* Hiệu ứng hiện dần */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s forwards ease-in;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hiệu ứng mờ dần mượt mà */
+.fade-out-smooth {
+  animation: fadeOutSmooth 3s forwards ease-out;
+}
+
+@keyframes fadeOutSmooth {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Hiệu ứng tỏa sáng cho lời chúc sau */
+.shine {
+  opacity: 0;
+  animation: shineEffect 2s forwards ease-in-out;
+}
+
+@keyframes shineEffect {
+  0% {
+    opacity: 0;
+    text-shadow: 0 0 5px #fff, 0 0 10px #cce, 0 0 20px #ddf;
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 8px #fff, 0 0 20px #ccf, 0 0 30px #eef;
+  }
+}
