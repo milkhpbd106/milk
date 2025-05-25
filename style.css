@@ -1,212 +1,146 @@
-/* Reset cơ bản */
-body, html {
+body {
   margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', 'Arial', sans-serif;
-  background-color: #fefaff;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: black;
+  color: white;
   overflow: hidden;
+  text-align: center;
+}
+
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
 }
 
 .hidden {
   display: none;
 }
 
-/* Màn hình nhập mật khẩu */
-#lock-screen {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(to bottom right, #e0f7ff, #f8e1ff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
-.lock-box {
-  background: white;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(200, 170, 255, 0.3);
-  text-align: center;
-}
-
-.lock-box input {
-  padding: 0.5rem;
-  margin-top: 1rem;
-  width: 200px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.lock-box button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: linear-gradient(to right, #c4e0ff, #fbc2eb);
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-}
-
-#lock-message {
-  margin-top: 1rem;
-  color: #ff4081;
-}
-
-/* Video nền intro */
-#intro-video {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2;
-}
-
-/* Video dreamy sau đó */
-#loop-video {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2;
-}
-
-/* Lời chúc ban đầu */
 #greetings, #more-greetings {
   position: absolute;
-  top: 10%;
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  font-size: 1.6rem;
-  z-index: 2;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.4rem;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
 }
 
-#greetings .line,
-#more-greetings .line {
+.line {
   opacity: 0;
-  transition: opacity 2s ease-in-out;
-  color: #fff0f9;
-  text-shadow: 1px 1px 4px rgba(100, 100, 255, 0.5);
-  font-weight: bold;
-  margin: 0.5rem 0;
+  transition: opacity 1.2s ease-in-out;
 }
 
-/* Hiệu ứng xuất hiện */
-.fade-in.show {
-  opacity: 1;
-}
-
-/* Nút mở quà */
-#gift-btn {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(to right, #fbc2eb, #a6c1ee);
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 0 15px rgba(255, 200, 255, 0.5);
-  z-index: 2;
-  animation: fadeIn 3s ease-in-out forwards;
-}
-
-#gift-image {
-  position: absolute;
-  bottom: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  z-index: 3;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(200, 200, 255, 0.4);
-}
-
-/* Bướm lấp lánh */
-#butterflies {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Cầu vồng */
-#rainbow {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 100%;
-  height: 200px;
-  background: radial-gradient(circle at center, rgba(255, 183, 245, 0.4), transparent);
-  z-index: 0;
-  animation: sparkleRainbow 6s infinite;
-}
-
-/* Animation cầu vồng */
-@keyframes sparkleRainbow {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
-/* Animation xuất hiện */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-/* Hiệu ứng hiện dần */
 .fade-in {
-  opacity: 0;
-  animation: fadeIn 1.5s forwards ease-in;
+  opacity: 1 !important;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-/* Hiệu ứng mờ dần mượt mà */
 .fade-out-smooth {
-  animation: fadeOutSmooth 3s forwards ease-out;
+  animation: fadeOut 3s ease forwards;
 }
 
-@keyframes fadeOutSmooth {
-  to {
-    opacity: 0;
-  }
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
-/* Hiệu ứng tỏa sáng cho lời chúc sau */
 .shine {
-  opacity: 0;
-  animation: shineEffect 2s forwards ease-in-out;
+  animation: shineEffect 2s ease-in-out forwards;
 }
 
 @keyframes shineEffect {
   0% {
     opacity: 0;
-    text-shadow: 0 0 5px #fff, 0 0 10px #cce, 0 0 20px #ddf;
+    transform: scale(0.8);
+    text-shadow: none;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+    text-shadow: 0 0 8px #fff;
   }
   100% {
     opacity: 1;
-    text-shadow: 0 0 8px #fff, 0 0 20px #ccf, 0 0 30px #eef;
+    transform: scale(1);
+    text-shadow: 0 0 5px #ffc0ff;
   }
+}
+
+#gift-btn {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  background: #ffccff;
+  color: #333;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px white;
+}
+
+#gift-image {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px white;
+}
+
+#butterflies .butterfly {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: url('https://i.imgur.com/VH7zWnD.png') no-repeat center/contain;
+  animation: fly 3s linear forwards;
+}
+
+@keyframes fly {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.6; }
+  50% { transform: translateY(-100px) scale(1); }
+  100% { transform: translateY(-200px) scale(0.8); opacity: 0; }
+}
+
+.bubble {
+  position: absolute;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: floatUp 5s linear;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+.magic-dust {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8), rgba(255,192,255,0.2));
+  transform: translate(-50%, -50%);
+  animation: sparkle 1.5s ease-out forwards;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+@keyframes sparkle {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0; transform: scale(1.5); }
 }
