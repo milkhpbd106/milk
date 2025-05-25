@@ -5,168 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Milk</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', cursive;
-      background: linear-gradient(to bottom, #f5faff, #ffeaff);
-      overflow: hidden;
-      color: #555;
-    }
-
-    .password-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.85);
-      padding: 2rem;
-      border-radius: 2rem;
-      box-shadow: 0 0 25px rgba(200, 200, 255, 0.5);
-      text-align: center;
-      width: 90%;
-      max-width: 400px;
-      animation: fadeIn 1.5s ease;
-    }
-
-    h2 {
-      color: #cc88dd;
-      font-size: 1.8rem;
-    }
-
-    #countdown {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      color: #777;
-      animation: glowText 2s ease-in-out infinite alternate;
-    }
-
-    input[type="password"] {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 1rem;
-      font-size: 1rem;
-      width: 100%;
-      margin-bottom: 1rem;
-    }
-
-    button {
-      padding: 10px 20px;
-      background: linear-gradient(to right, #c6f1ff, #f5d1ff);
-      border: none;
-      border-radius: 1rem;
-      cursor: pointer;
-      font-size: 1.1rem;
-      color: #333;
-      box-shadow: 0 0 10px rgba(200, 200, 255, 0.4);
-    }
-
-    #errorMessage {
-      color: red;
-      margin-top: 10px;
-    }
-
-    #videoContainer {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-    }
-
-    video {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    #openGiftButton {
-      display: none;
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      background-color: #ffeaff;
-      border: 2px solid #cc88dd;
-      border-radius: 1rem;
-      cursor: pointer;
-      animation: fadeIn 2s ease 7s forwards, sparkle 3s infinite;
-    }
-
-    #giftImage {
-      display: none;
-      position: absolute;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      max-width: 80%;
-      border-radius: 1rem;
-      box-shadow: 0 0 20px rgba(255, 200, 255, 0.5);
-    }
-
-    .floating-cloud {
-      position: absolute;
-      width: 120px;
-      height: 70px;
-      background: white;
-      border-radius: 50%;
-      filter: blur(2px);
-      animation: floatCloud 40s linear infinite;
-    }
-
-    .butterfly {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background: url('butterfly.png') no-repeat center/contain;
-      animation: fly 8s linear infinite;
-    }
-
-    .rainbow {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60%;
-      height: 150px;
-      background: linear-gradient(to top, violet, indigo, blue, green, yellow, orange, red);
-      opacity: 0.5;
-      border-radius: 0 0 50% 50%;
-      animation: fadeIn 3s ease-in-out;
-    }
-
-    @keyframes glowText {
-      from { text-shadow: 0 0 5px #add8ff; }
-      to { text-shadow: 0 0 15px #dcb8ff; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes sparkle {
-      0%, 100% { box-shadow: 0 0 5px #fff; }
-      50% { box-shadow: 0 0 15px #fff; }
-    }
-
-    @keyframes floatCloud {
-      0% { left: -150px; top: 20%; }
-      100% { left: 110%; top: 25%; }
-    }
-
-    @keyframes fly {
-      0% { transform: translate(-50px, 0); opacity: 0; }
-      50% { transform: translate(100vw, -50vh); opacity: 1; }
-      100% { transform: translate(200vw, -100vh); opacity: 0; }
-    }
-  </style>
 </head>
 <body>
   <div id="passwordScreen">
@@ -195,8 +33,7 @@
 
   <script>
     const passwordInput = document.getElementById('passwordInput');
-    const submitBtn = document.getElementById('submitPassword');
-    const countdown = document.getElementById('timeLeft');
+    const submitPassword = document.getElementById('submitPassword');
     const errorMessage = document.getElementById('errorMessage');
     const passwordScreen = document.getElementById('passwordScreen');
     const videoContainer = document.getElementById('videoContainer');
@@ -205,61 +42,137 @@
     const bgMusic = document.getElementById('bgMusic');
     const openGiftButton = document.getElementById('openGiftButton');
     const giftImage = document.getElementById('giftImage');
+    const countdown = document.getElementById('timeLeft');
 
-    function updateCountdown() {
+    const unlockDate = new Date('2025-06-10T00:00:00');
+    const interval = setInterval(() => {
       const now = new Date();
-      const releaseDate = new Date('2025-06-10T00:00:00');
-      const diff = releaseDate - now;
+      const diff = unlockDate - now;
 
       if (diff <= 0) {
-        countdown.innerText = '🎉 Đã đến ngày mở quà!';
+        countdown.textContent = '🎉 Đã đến lúc mở quà rồi!';
         passwordInput.disabled = false;
-        submitBtn.disabled = false;
+        submitPassword.disabled = false;
+        clearInterval(interval);
       } else {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
-        countdown.innerText = `${days} ngày ${hours}h ${minutes}m ${seconds}s`;
+        countdown.textContent = `${days} ngày ${hours}h ${minutes}m ${seconds}s`;
       }
-    }
+    }, 1000);
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    submitBtn.addEventListener('click', () => {
-      const input = passwordInput.value.trim();
-      const now = new Date();
-      const unlockDate = new Date('2025-06-10T00:00:00');
-
-      if (input !== 'Milk10/6') {
-        errorMessage.innerText = '❌ Mật khẩu sai rồi nè!';
-        return;
+    submitPassword.addEventListener('click', () => {
+      const password = passwordInput.value;
+      if (password === 'Milk10/6') {
+        const now = new Date();
+        if (now >= unlockDate) {
+          startBirthdaySequence();
+        } else {
+          errorMessage.textContent = '🎁 Món quà có thể mở vào ngày 10/6 nhé!';
+        }
+      } else {
+        errorMessage.textContent = '❌ Sai mật khẩu rồi nè!';
       }
+    });
 
-      if (now < unlockDate) {
-        errorMessage.innerText = '📅 Món quà có thể mở vào ngày 10/6 nhé!';
-        return;
-      }
-
+    function startBirthdaySequence() {
       passwordScreen.style.display = 'none';
       videoContainer.style.display = 'block';
       girlVideo.play();
       bgMusic.play();
+      girlVideo.loop = true;
+
+      const messageDiv = document.createElement('div');
+      messageDiv.style.position = 'absolute';
+      messageDiv.style.top = '20%';
+      messageDiv.style.left = '50%';
+      messageDiv.style.transform = 'translateX(-50%)';
+      messageDiv.style.textAlign = 'center';
+      messageDiv.style.fontSize = '1.5rem';
+      messageDiv.style.color = '#fff';
+      messageDiv.style.fontWeight = 'bold';
+      messageDiv.style.textShadow = '0 0 10px #dcb8ff';
+      messageDiv.style.opacity = '0';
+      messageDiv.style.transition = 'opacity 5s ease';
+      messageDiv.innerHTML = `
+        <p>🎂 Chúc mừng sinh nhật cậu</p>
+        <p>✨ Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ</p>
+        <p>🎁 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu</p>
+      `;
+      document.body.appendChild(messageDiv);
+
+      setTimeout(() => {
+        messageDiv.style.opacity = '1';
+      }, 1000);
+
+      setTimeout(() => {
+        messageDiv.style.transition = 'opacity 3s ease';
+        messageDiv.style.opacity = '0';
+      }, 8000);
 
       setTimeout(() => {
         girlVideo.style.display = 'none';
         dreamyVideo.style.display = 'block';
-      }, 7000);
+        dreamyVideo.play();
 
-      setTimeout(() => {
-        openGiftButton.style.display = 'block';
-      }, 12000);
-    });
+        const message2 = document.createElement('div');
+        message2.style.position = 'absolute';
+        message2.style.top = '25%';
+        message2.style.left = '50%';
+        message2.style.transform = 'translateX(-50%)';
+        message2.style.textAlign = 'center';
+        message2.style.fontSize = '1.3rem';
+        message2.style.color = '#fff';
+        message2.style.fontWeight = 'bold';
+        message2.style.textShadow = '0 0 10px #ccf';
+        message2.style.opacity = '0';
+        message2.style.transition = 'opacity 3s ease';
+        message2.innerHTML = `
+          <p>🌸 Happy Birthday Milk</p>
+          <p>💖 Let’s step into a dreamy world together</p>
+        `;
+        document.body.appendChild(message2);
 
-    openGiftButton.addEventListener('click', () => {
-      giftImage.style.display = giftImage.style.display === 'block' ? 'none' : 'block';
-    });
+        setTimeout(() => {
+          message2.style.opacity = '1';
+        }, 500);
+
+        setTimeout(() => {
+          message2.style.opacity = '0';
+        }, 3500);
+
+        setTimeout(() => {
+          openGiftButton.style.display = 'block';
+        }, 7000);
+      }, 11000);
+
+      openGiftButton.addEventListener('click', () => {
+        giftImage.style.display = giftImage.style.display === 'block' ? 'none' : 'block';
+      });
+
+      function addFloatingButterflies() {
+        for (let i = 0; i < 3; i++) {
+          const butterfly = document.createElement('div');
+          butterfly.className = 'butterfly';
+          butterfly.style.top = `${30 + i * 20}%`;
+          butterfly.style.left = `${10 + i * 25}%`;
+          butterfly.style.animationDelay = `${i * 3}s`;
+          document.body.appendChild(butterfly);
+        }
+      }
+
+      function addSoftRainbow() {
+        const rainbow = document.createElement('div');
+        rainbow.className = 'rainbow';
+        rainbow.style.bottom = '0';
+        document.body.appendChild(rainbow);
+      }
+
+      addFloatingButterflies();
+      addSoftRainbow();
+    }
   </script>
 </body>
 </html>
