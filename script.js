@@ -72,47 +72,6 @@ async function startSequence() {
     giftBtn.style.display = "inline-block";
   });
 }
-const countdownEl = document.getElementById("countdown");
-const passwordInput = document.getElementById("passwordInput");
-const unlockButton = document.getElementById("unlockButton");
-const messageEl = document.getElementById("message");
-
-const targetDate = new Date("2025-06-10T00:00:00").getTime();
-
-function updateCountdown() {
-  const now = new Date().getTime();
-  const distance = targetDate - now;
-
-  if (distance < 0) {
-    countdownEl.innerHTML = "🎉 Đã đến lúc mở quà rồi!";
-    return;
-  }
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  countdownEl.innerHTML = `${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`;
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-unlockButton.addEventListener("click", () => {
-  const password = passwordInput.value;
-  const now = new Date();
-
-  if (password === "Milk10/6") {
-    if (now.getFullYear() === 2025 && now.getMonth() === 5 && now.getDate() === 10) {
-      window.location.href = "home.html";
-    } else {
-      messageEl.textContent = "⏳ Món quà có thể mở vào ngày 10/6!";
-    }
-  } else {
-    messageEl.textContent = "❌ Sai mật khẩu rồi đó!";
-  }
-});
 
 // Mở/tắt món quà
 giftBtn.addEventListener('click', () => {
