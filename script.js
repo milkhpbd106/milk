@@ -1,7 +1,7 @@
 // script.js
 const correctPassword = "Milk10/6";
 // Để test: bỏ khóa ngày
-const unlockDate = new Date("2000-01-01T00:00:00");
+const unlockDate = new Date("2025-06-10T00:00:00");
 
 function checkPassword() {
   const input = document.getElementById("password-input").value;
