@@ -5,14 +5,130 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Milk</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', cursive;
+      background: linear-gradient(to bottom, #f5faff, #ffeaff);
+      overflow: hidden;
+      color: #555;
+    }
+
+    .password-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.85);
+      padding: 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 0 25px rgba(200, 200, 255, 0.5);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    h2 {
+      color: #cc88dd;
+      font-size: 1.8rem;
+    }
+
+    #countdown {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #777;
+      animation: glowText 2s ease-in-out infinite alternate;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 1rem;
+      font-size: 1rem;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: linear-gradient(to right, #c6f1ff, #f5d1ff);
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: #333;
+      box-shadow: 0 0 10px rgba(200, 200, 255, 0.4);
+    }
+
+    #errorMessage {
+      color: red;
+      margin-top: 10px;
+    }
+
+    #videoContainer {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #openGiftButton {
+      display: none;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #ffeaff;
+      border: 2px solid #cc88dd;
+      border-radius: 1rem;
+      cursor: pointer;
+      animation: fadeIn 2s ease 7s forwards;
+    }
+
+    #giftImage {
+      display: none;
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 80%;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(255, 200, 255, 0.5);
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 5px #add8ff; }
+      to { text-shadow: 0 0 15px #dcb8ff; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
   <!-- Màn hình nhập mật khẩu -->
   <div id="passwordScreen">
     <div class="password-container">
-      <h2>Nhập mật khẩu để mở quà 🎁</h2>
-      <input type="password" id="passwordInput" placeholder="Nhập mật khẩu">
-      <button id="submitPassword">Mở quà</button>
+      <h2>🎀 Nhập mật khẩu để mở quà 🎁</h2>
+      <div id="countdown">⏳ Đếm ngược đến 10/6: <span id="timeLeft"></span></div>
+      <input type="password" id="passwordInput" placeholder="🔐 Nhập mật khẩu" disabled>
+      <button id="submitPassword" disabled>✨ Mở quà ✨</button>
       <p id="errorMessage"></p>
     </div>
   </div>
@@ -20,7 +136,7 @@
   <!-- Video và nội dung chính -->
   <div id="videoContainer">
     <video id="girlVideo" src="milkdream.mp4"></video>
-    <video id="dreamyVideo" src="dreamy-video.mp4" loop></video>
+    <video id="dreamyVideo" src="dreamy-video.mp4" loop muted></video>
   </div>
 
   <audio id="bgMusic" src="you-vietra.mp3" loop></audio>
@@ -29,6 +145,74 @@
   <button id="openGiftButton">🎁 Mở món quà nhỏ</button>
   <img id="giftImage" src="gift-image.jpg" alt="Món quà">
 
-  <script src="script.js"></script>
+  <script>
+    const passwordInput = document.getElementById('passwordInput');
+    const submitBtn = document.getElementById('submitPassword');
+    const countdown = document.getElementById('timeLeft');
+    const errorMessage = document.getElementById('errorMessage');
+    const passwordScreen = document.getElementById('passwordScreen');
+    const videoContainer = document.getElementById('videoContainer');
+    const girlVideo = document.getElementById('girlVideo');
+    const dreamyVideo = document.getElementById('dreamyVideo');
+    const bgMusic = document.getElementById('bgMusic');
+    const openGiftButton = document.getElementById('openGiftButton');
+    const giftImage = document.getElementById('giftImage');
+
+    function updateCountdown() {
+      const now = new Date();
+      const releaseDate = new Date('2025-06-10T00:00:00');
+      const diff = releaseDate - now;
+
+      if (diff <= 0) {
+        countdown.innerText = '🎉 Đã đến ngày mở quà!';
+        passwordInput.disabled = false;
+        submitBtn.disabled = false;
+      } else {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        countdown.innerText = `${days} ngày ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    submitBtn.addEventListener('click', () => {
+      const input = passwordInput.value.trim();
+      const now = new Date();
+      const unlockDate = new Date('2025-06-10T00:00:00');
+
+      if (input !== 'Milk10/6') {
+        errorMessage.innerText = '❌ Mật khẩu sai rồi nè!';
+        return;
+      }
+
+      if (now < unlockDate) {
+        errorMessage.innerText = '📅 Món quà có thể mở vào ngày 10/6 nhé!';
+        return;
+      }
+
+      // Thành công -> mở giao diện mơ mộng
+      passwordScreen.style.display = 'none';
+      videoContainer.style.display = 'block';
+      girlVideo.play();
+      bgMusic.play();
+
+      setTimeout(() => {
+        girlVideo.style.display = 'none';
+        dreamyVideo.style.display = 'block';
+      }, 7000);
+
+      setTimeout(() => {
+        openGiftButton.style.display = 'block';
+      }, 12000);
+    });
+
+    openGiftButton.addEventListener('click', () => {
+      giftImage.style.display = giftImage.style.display === 'block' ? 'none' : 'block';
+    });
+  </script>
 </body>
 </html>
