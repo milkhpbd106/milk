@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Món Quà Mơ Mộng ✨</title>
+  <title>Món quà mộng mơ ✨</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="background">
+    <img src="cloud-left.png" class="cloud cloud-left" />
+    <img src="cloud-right.png" class="cloud cloud-right" />
+    <img src="rainbow.png" class="rainbow" />
     <div class="magic-dust"></div>
-    <div class="cloud cloud-left"></div>
-    <div class="cloud cloud-right"></div>
-    <div class="rainbow"></div>
-    <div class="bubble"></div>
-    <div class="container">
-      <h1 class="title">🌸 Mở Quà Mơ Mộng 💖</h1>
-      <input type="password" id="passwordInput" placeholder="Nhập mật khẩu..." />
-      <button id="unlockButton">Mở quà</button>
-      <div id="message" class="message"></div>
-      <div class="countdown-wrapper">
-        <div id="countdown"></div>
-      </div>
-    </div>
+    <div class="bubble-container"></div>
   </div>
+
+  <div class="container">
+    <h1 class="title">🌸 Mở món quà nhỏ của cậu 💖</h1>
+
+    <div id="countdown" class="countdown"></div>
+
+    <input type="password" id="passwordInput" placeholder="Nhập mật khẩu..." />
+    <button id="unlockButton">Mở quà</button>
+    <div id="message" class="message"></div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
