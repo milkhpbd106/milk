@@ -67,3 +67,15 @@ openGiftButton.addEventListener('click', () => {
 button:active {
   transform: scale(0.95);
 }
+button {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #c6f1ff, #f5d1ff);
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #333;
+  box-shadow: 0 0 10px rgba(200, 200, 255, 0.4);
+  animation: glowButton 2s ease-in-out infinite alternate;
+  transition: transform 0.3s ease;
+}
