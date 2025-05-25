@@ -1,36 +1,45 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday Milk 🎂</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Màn hình nhập mật khẩu đơn giản -->
-  <div id="passwordScreen">
-    <div class="password-box">
-      <img src="https://cdn-icons-png.flaticon.com/512/4202/4202840.png" class="icon" alt="lock"/>
-      <h2>🔐 Nhập mật khẩu mở quà</h2>
-      <input type="password" id="passwordInput" placeholder="Ví dụ: Milk10/6"/>
-      <button id="submitPassword">Mở khóa 🎁</button>
-      <p id="errorMessage"></p>
-      <div class="cute-icons">🌸 🦋</div>
+  <div id="lock-screen">
+    <div class="lock-box">
+      <p>🔒 Nhập mật khẩu để mở quà</p>
+      <input type="password" id="password-input" placeholder="Mật khẩu" />
+      <button onclick="checkPassword()">Mở khóa</button>
+      <p id="lock-message"></p>
     </div>
   </div>
 
-  <!-- Video nền mây -->
-  <video id="dreamyVideo" src="dreamy-video.mp4" loop muted></video>
+  <audio id="bgm" src="you-vietra.mp3" loop></audio>
 
-  <!-- Nhạc nền -->
-  <audio id="bgMusic" src="you-vietra.mp3" loop></audio>
+  <!-- Phần video và nội dung -->
+  <div id="main-content" class="hidden">
+    <video id="intro-video" src="milkdream.mp4" autoplay muted loop></video>
 
-  <!-- Lời chúc + quà -->
-  <div id="messageContainer"></div>
+    <div id="greetings">
+      <p class="line fade-in">Chúc mừng sinh nhật cậu</p>
+      <p class="line fade-in">Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ</p>
+      <p class="line fade-in">Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu</p>
+    </div>
 
-  <div id="giftSection">
-    <button id="openGiftButton">🎁 Mở món quà nhỏ 🎀</button>
-    <img id="giftImage" src="gift-image.png" alt="Món quà"/>
+    <video id="loop-video" class="hidden" src="dreamy-video.mp4" loop muted></video>
+
+    <div id="more-greetings" class="hidden">
+      <p class="line fade-in">🌸 Happy Birthday Milk 💖</p>
+      <p class="line fade-in">Let’s step into a dreamy world together</p>
+    </div>
+
+    <button id="gift-btn" class="hidden" onclick="toggleGift()">🎁 Mở quà dành riêng cho cậu</button>
+    <img id="gift-image" src="gift-image.png" class="hidden" />
+
+    <div id="butterflies"></div>
+    <div id="rainbow"></div>
   </div>
 
   <script src="script.js"></script>
