@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Milk Birthday</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
       overflow: hidden;
       font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #f8faff, #e8f0ff);
     }
     #main {
       position: relative;
@@ -26,22 +26,9 @@
       object-fit: cover;
       z-index: -1;
     }
-    .intro-message {
-      position: absolute;
-      top: 38%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.5em;
-      color: white;
-      text-shadow: 0 0 10px rgba(255, 182, 193, 0.8);
-      opacity: 0;
-      animation: fadeIn 1.5s ease forwards, fadeOut 1.5s ease forwards 3s;
-    }
     .message {
       position: absolute;
-      top: 40%;
+      top: 35%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
@@ -50,18 +37,29 @@
       color: white;
       text-shadow: 0 0 10px rgba(0,255,255,0.6);
       opacity: 0;
-      animation: fadeIn 3s ease forwards 5s;
+      animation: fadeIn5s 5s ease forwards 2s, fadeOut3s 3s ease forwards 7s;
+    }
+    .final-message {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.8em;
+      color: white;
+      text-shadow: 0 0 10px rgba(173, 216, 230, 0.6);
+      opacity: 0;
+      animation: fadeIn3s 3s ease forwards 11s;
     }
     .gift-box {
       position: absolute;
-      top: 70%;
+      top: 75%;
       left: 50%;
       transform: translate(-50%, -50%);
       cursor: pointer;
       transition: transform 0.3s ease;
       z-index: 10;
-      opacity: 0;
-      animation: fadeIn 2s ease forwards 7.5s;
     }
     .gift-box:hover {
       transform: translate(-50%, -50%) scale(1.05);
@@ -77,15 +75,35 @@
       box-shadow: 0 0 20px white;
       z-index: 20;
     }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+    .butterfly {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: radial-gradient(circle, white, #d0f0ff);
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: floatButterfly 8s linear infinite;
+      filter: blur(1px);
+      box-shadow: 0 0 10px rgba(255,255,255,0.8);
     }
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-      }
+    @keyframes floatButterfly {
+      0% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      50% { transform: translateY(-100px) translateX(50px); }
+      90% { opacity: 1; }
+      100% { transform: translateY(-200px) translateX(-30px); opacity: 0; }
+    }
+    @keyframes fadeIn5s {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeOut3s {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    @keyframes fadeIn3s {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -93,16 +111,26 @@
   <div id="main">
     <video class="bg-video" id="bgVideo" src="dreamy-video.mp4" autoplay loop muted></video>
 
-    <div class="intro-message">Chờ một xíu nhé... rất gần rồi nè 🌸</div>
+    <!-- Lời chúc đầu tiên -->
+    <div class="message">Chúc Mừng Sinh Nhật Cậu
+      💖</div>
 
-    <div class="message">Ngài Milk, Happy Birthday 💖</div>
+    <!-- Lời chúc tiếp theo -->
+    <div class="final-message">🌸 Happy Birthday Milk 💖<br/>Let’s step into a dreamy world together</div>
 
+    <!-- Ảnh quà -->
     <img id="giftImage" class="gift-image" src="gift-image.png" alt="Gift" />
 
+    <!-- Hộp quà -->
     <img src="giftbox-whiteblue.png" alt="Gift Box" class="gift-box" onclick="openGift()" />
 
+    <!-- Bướm tròn lấp lánh -->
+    <div class="butterfly" style="top: 80%; left: 20%; animation-delay: 0s;"></div>
+    <div class="butterfly" style="top: 85%; left: 40%; animation-delay: 2s;"></div>
+    <div class="butterfly" style="top: 90%; left: 60%; animation-delay: 4s;"></div>
   </div>
 
+  <!-- Nhạc nền -->
   <audio src="You-Vietra.mp3" autoplay loop></audio>
 
   <script>
