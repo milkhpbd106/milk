@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Món quà mộng mơ ✨</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Milk</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="background">
-    <img src="cloud-left.png" class="cloud cloud-left" />
-    <img src="cloud-right.png" class="cloud cloud-right" />
-    <img src="rainbow.png" class="rainbow" />
-    <div class="magic-dust"></div>
-    <div class="bubble-container"></div>
+  <!-- Màn hình nhập mật khẩu -->
+  <div id="passwordScreen">
+    <div class="password-container">
+      <h2>Nhập mật khẩu để mở quà 🎁</h2>
+      <input type="password" id="passwordInput" placeholder="Nhập mật khẩu">
+      <button id="submitPassword">Mở quà</button>
+      <p id="errorMessage"></p>
+    </div>
   </div>
 
-  <div class="container">
-    <h1 class="title">🌸 Mở món quà nhỏ của cậu 💖</h1>
-
-    <div id="countdown" class="countdown"></div>
-
-    <input type="password" id="passwordInput" placeholder="Nhập mật khẩu..." />
-    <button id="unlockButton">Mở quà</button>
-    <div id="message" class="message"></div>
+  <!-- Video và nội dung chính -->
+  <div id="videoContainer">
+    <video id="girlVideo" src="milkdream.mp4"></video>
+    <video id="dreamyVideo" src="dreamy-video.mp4" loop></video>
   </div>
+
+  <audio id="bgMusic" src="you-vietra.mp3" loop></audio>
+
+  <!-- Nút mở quà và ảnh quà -->
+  <button id="openGiftButton">🎁 Mở món quà nhỏ</button>
+  <img id="giftImage" src="gift-image.jpg" alt="Món quà">
 
   <script src="script.js"></script>
 </body>
