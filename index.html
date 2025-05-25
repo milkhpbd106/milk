@@ -7,31 +7,30 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Màn hình nhập mật khẩu -->
+  <!-- Màn hình nhập mật khẩu đơn giản -->
   <div id="passwordScreen">
     <div class="password-box">
       <img src="https://cdn-icons-png.flaticon.com/512/4202/4202840.png" class="icon" alt="lock"/>
-      <h2>🔐 Nhập mật khẩu để mở quà 🎁</h2>
-      <input type="password" id="passwordInput" placeholder="Mật khẩu..."/>
-      <button id="submitPassword">Mở khóa</button>
+      <h2>🔐 Nhập mật khẩu mở quà</h2>
+      <input type="password" id="passwordInput" placeholder="Ví dụ: Milk10/6"/>
+      <button id="submitPassword">Mở khóa 🎁</button>
       <p id="errorMessage"></p>
-      <div class="cute-icons">🌸🦋💫🧁🌈</div>
+      <div class="cute-icons">🌸 🦋</div>
     </div>
   </div>
 
-  <!-- Video cô gái ngắm mây -->
-  <div id="videoContainer">
-    <video id="girlVideo" src="milkdream.mp4" muted></video>
-    <video id="dreamyVideo" src="dreamy-video.mp4" loop muted></video>
-  </div>
+  <!-- Video nền mây -->
+  <video id="dreamyVideo" src="dreamy-video.mp4" loop muted></video>
 
   <!-- Nhạc nền -->
   <audio id="bgMusic" src="you-vietra.mp3" loop></audio>
 
-  <!-- Nút mở quà & hình quà -->
+  <!-- Lời chúc + quà -->
+  <div id="messageContainer"></div>
+
   <div id="giftSection">
-    <button id="openGiftButton">🎁 Món quà dành riêng cho cậu</button>
-    <img id="giftImage" src="gift-image.png" alt="Món quà nhỏ xíu"/>
+    <button id="openGiftButton">🎁 Mở món quà nhỏ 🎀</button>
+    <img id="giftImage" src="gift-image.png" alt="Món quà"/>
   </div>
 
   <script src="script.js"></script>
