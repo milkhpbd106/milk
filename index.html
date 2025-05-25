@@ -4,120 +4,110 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mở quà sinh nhật 🎁</title>
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Comic Neue', cursive;
-      background: linear-gradient(to bottom, #fefeff, #e3e6f5);
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom right, #fce4ec, #e1f5fe);
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
       overflow: hidden;
-      color: #7755aa;
+      position: relative;
     }
-
     .container {
-      background: rgba(255, 255, 255, 0.8);
-      border: 2px dashed #ffd5ec;
+      background: rgba(255, 255, 255, 0.7);
       border-radius: 20px;
-      padding: 30px 40px;
-      box-shadow: 0 0 25px rgba(200, 150, 255, 0.3);
+      box-shadow: 0 0 30px rgba(255, 182, 193, 0.5);
+      padding: 30px;
       text-align: center;
-      animation: fadeIn 2s ease-out;
+      animation: fadeIn 1.5s ease-in-out;
     }
-
+    h1 {
+      color: #cc66ff;
+      margin-bottom: 15px;
+      font-size: 2rem;
+    }
     input[type="password"] {
       padding: 10px;
-      border: 2px solid #ffb6d9;
       border-radius: 10px;
-      font-size: 1.2rem;
-      background: #fff0f9;
-      margin-top: 10px;
+      border: 2px solid #ffb6c1;
+      width: 200px;
+      text-align: center;
+      font-size: 1rem;
     }
-
     button {
       margin-top: 15px;
       padding: 10px 20px;
+      background-color: #ffccff;
       border: none;
-      border-radius: 15px;
-      background: linear-gradient(to right, #ffb6d9, #dcb4ff);
-      color: white;
-      font-size: 1.1rem;
+      border-radius: 12px;
+      color: #663399;
+      font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 150, 200, 0.4);
+      box-shadow: 0 0 10px rgba(255, 204, 255, 0.6);
       transition: transform 0.2s ease;
     }
-
     button:hover {
       transform: scale(1.05);
     }
-
-    .msg {
-      margin-top: 20px;
-      color: #cc66aa;
+    .message {
+      margin-top: 10px;
+      color: #ff4081;
       font-weight: bold;
     }
-
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     .butterfly {
       position: absolute;
       width: 40px;
-      animation: flutter 8s infinite ease-in-out;
+      height: 40px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Emojione_1F98B.svg/2048px-Emojione_1F98B.svg.png');
+      background-size: contain;
+      animation: fly 8s linear infinite;
+      opacity: 0.8;
     }
-
-    .butterfly-1 { top: 20%; left: 10%; animation-delay: 0s; }
-    .butterfly-2 { top: 40%; right: 15%; animation-delay: 2s; }
-    .butterfly-3 { bottom: 20%; left: 30%; animation-delay: 4s; }
-
-    @keyframes flutter {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(10deg); }
-      100% { transform: translateY(0) rotate(0deg); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fly {
+      0%   { transform: translate(-50%, -50%) rotate(0deg); top: 100%; left: 0%; }
+      50%  { transform: translate(50%, -50%) rotate(180deg); top: 20%; left: 50%; }
+      100% { transform: translate(0%, -50%) rotate(360deg); top: 0%; left: 100%; }
     }
   </style>
 </head>
 <body>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Emoji_u1f98b.svg" class="butterfly butterfly-1" />
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Emoji_u1f98b.svg" class="butterfly butterfly-2" />
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Emoji_u1f98b.svg" class="butterfly butterfly-3" />
-
+  <div class="butterfly"></div>
   <div class="container">
-    <h2>🔒 Nhập mật khẩu để mở quà 🎁</h2>
-    <input type="password" id="passwordInput" placeholder="Nhập mật khẩu..." />
-    <br />
-    <button onclick="checkPassword()">Mở khóa</button>
-    <div class="msg" id="message"></div>
+    <h1>🔒 Nhập mật khẩu để mở quà ✨</h1>
+    <input type="password" id="passwordInput" placeholder="Mật khẩu...">
+    <br>
+    <button onclick="checkPassword()">Mở quà 💝</button>
+    <div class="message" id="message"></div>
   </div>
-
-  <script src="unlock.js"></script>
   <script>
-    const unlockDate = new Date("2025-06-10T00:00:00");
-
     function checkPassword() {
-      const password = document.getElementById("passwordInput").value;
+      const input = document.getElementById("passwordInput").value.trim();
       const message = document.getElementById("message");
+      const correctPassword = "Milk10/6";
+      const today = new Date();
+      const unlockDate = new Date("2025-06-10T00:00:00");
 
-      if (password !== "Milk10/6") {
-        message.textContent = "Mật khẩu sai mất rồi 🥺";
+      if (input !== correctPassword) {
+        message.textContent = "Mật khẩu không đúng rồi 😢";
         return;
       }
 
-      const now = new Date();
-      if (now < unlockDate) {
-        message.textContent = "🎈 Món quà có thể mở vào ngày 10/6 đó nè 💖";
-        return;
+      if (today < unlockDate) {
+        message.textContent = "🎁 Món quà có thể mở vào ngày 10/6 nhé 💖";
+      } else {
+        window.location.href = "main.html"; // Đổi thành file chính của con
       }
-
-      window.location.href = "main.html"; // trang chính sau khi mở khoá
     }
   </script>
+  <script src="unlock.js"></script>
 </body>
 </html>
