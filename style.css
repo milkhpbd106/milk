@@ -1,4 +1,4 @@
-/* style.css */
+/* --- Toàn cục --- */
 body {
   margin: 0;
   padding: 0;
@@ -7,12 +7,13 @@ body {
   background: linear-gradient(to bottom, #e8f0ff, #fbefff);
 }
 
+/* --- Màn hình nhập mật khẩu --- */
 .password-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 20px;
   padding: 30px;
   text-align: center;
@@ -45,6 +46,7 @@ button:hover {
   background-color: #c7a6f7;
 }
 
+/* --- Video Container chính --- */
 #videoContainer {
   display: none;
   position: relative;
@@ -63,6 +65,7 @@ video {
   z-index: -1;
 }
 
+/* --- Nút mở quà --- */
 #openGiftButton {
   display: none;
   position: absolute;
@@ -79,6 +82,7 @@ video {
   z-index: 2;
 }
 
+/* --- Ảnh món quà --- */
 #giftImage {
   display: none;
   max-width: 80%;
@@ -92,62 +96,10 @@ video {
   z-index: 2;
 }
 
+/* --- Mây bồng bềnh --- */
 .floating-cloud {
   position: absolute;
-  width: 200px;
-  height: 100px;
-  background: white;
-  border-radius: 100px;
-  box-shadow: 60px 0 white, 120px 0 white;
-  animation: cloudMove 60s linear infinite;
-  opacity: 0.7;
-}
-
-.butterfly {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, #ffffff 40%, #aee3ff 60%);
-  border-radius: 50%;
-  box-shadow: 0 0 15px #ccf;
-  animation: butterflyFly 8s ease-in-out infinite;
-  opacity: 0.9;
-}
-
-.rainbow {
-  position: absolute;
-  width: 100%;
-  height: 150px;
-  bottom: 0;
-  background: linear-gradient(to right, rgba(255,200,255,0.3), rgba(200,255,255,0.3), rgba(255,255,200,0.3));
-  box-shadow: 0 0 30px rgba(255,255,255,0.4);
-  animation: fadeIn 3s ease;
-}
-
-@keyframes cloudMove {
-  0% { left: -300px; }
-  100% { left: 100%; }
-}
-
-@keyframes butterflyFly {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  50% { transform: translateY(-100px) rotate(15deg); }
-  100% { transform: translateY(0) rotate(-15deg); opacity: 0; }
-}
-
-@keyframes floatButton {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, -10px); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-/* Mây bồng bềnh */
-.floating-cloud {
-  position: absolute;
-  background: url('cloud.png') no-repeat;
+  background: url('cloud.png') no-repeat center center;
   background-size: contain;
   width: 200px;
   height: 100px;
@@ -155,16 +107,12 @@ video {
   opacity: 0.7;
   z-index: 1;
 }
+
 .cloud1 { top: 20%; left: -250px; animation-delay: 0s; }
 .cloud2 { top: 40%; left: -200px; animation-delay: 15s; }
 .cloud3 { top: 60%; left: -300px; animation-delay: 30s; }
 
-@keyframes cloudMove {
-  0% { left: -300px; }
-  100% { left: 110%; }
-}
-
-/* Cầu vồng */
+/* --- Cầu vồng mềm mại --- */
 .soft-rainbow {
   position: absolute;
   bottom: 0;
@@ -179,28 +127,23 @@ video {
   z-index: 1;
 }
 
-/* Bướm */
+/* --- Bướm bay lấp lánh --- */
 .butterfly {
   position: absolute;
   width: 40px;
   height: 40px;
-  background: url('butterfly.png') no-repeat;
+  background: url('butterfly.png') no-repeat center center;
   background-size: contain;
   animation: butterflyFly 20s ease-in-out infinite;
   z-index: 2;
   opacity: 0.8;
 }
+
 .butterfly1 { top: 60%; left: 10%; animation-delay: 0s; }
 .butterfly2 { top: 70%; left: 30%; animation-delay: 5s; }
 .butterfly3 { top: 50%; left: 60%; animation-delay: 10s; }
 
-@keyframes butterflyFly {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(30px, -50px) rotate(30deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
-}
-
-/* Bụi sáng */
+/* --- Bụi sáng lấp lánh --- */
 .sparkle {
   position: absolute;
   width: 6px;
@@ -210,18 +153,41 @@ video {
   box-shadow: 0 0 6px #fff;
   opacity: 0.8;
   animation: sparkleBlink 3s infinite;
+  z-index: 2;
 }
+
 .sparkle1 { top: 30%; left: 40%; animation-delay: 0s; }
 .sparkle2 { top: 50%; left: 60%; animation-delay: 1.5s; }
 .sparkle3 { top: 65%; left: 25%; animation-delay: 3s; }
 
-@keyframes sparkleBlink {
-  0%, 100% { opacity: 0.2; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.3); }
+/* --- Hiệu ứng động --- */
+@keyframes cloudMove {
+  0% { left: -300px; }
+  100% { left: 110%; }
 }
 
-/* Cầu vồng lung linh */
+@keyframes butterflyFly {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  50%  { transform: translate(30px, -50px) rotate(30deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes floatButton {
+  0%, 100% { transform: translate(-50%, 0); }
+  50%      { transform: translate(-50%, -10px); }
+}
+
+@keyframes sparkleBlink {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 @keyframes glow {
   from { opacity: 0.2; }
-  to { opacity: 0.6; }
+  to   { opacity: 0.6; }
 }
