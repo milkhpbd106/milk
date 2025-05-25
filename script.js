@@ -1,6 +1,6 @@
 // script.js
 const correctPassword = "Milk10/6";
-// Tạm tắt kiểm tra ngày để test
+// Để test: bỏ khóa ngày
 const unlockDate = new Date("2000-01-01T00:00:00");
 
 function checkPassword() {
@@ -33,24 +33,30 @@ function startBirthdayExperience() {
   // Phát nhạc nền
   bgm.play();
 
-  // Hiện 3 lời chúc đầu trong 5 giây
+  // Hiện 3 lời chúc đầu lần lượt, mỗi dòng 1.5s sau dòng trước, có icon
   const lines = greetings.querySelectorAll(".line");
+  lines[0].textContent = "🌈 Chúc mừng sinh nhật cậu 💖";
+  lines[1].textContent = "✨ Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ 🌸";
+  lines[2].textContent = "🎁 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 🌷";
+
   lines.forEach((line, i) => {
     setTimeout(() => {
       line.style.opacity = "1";
-    }, i * 1700); // hiện lần lượt cách nhau 1.7s
+    }, i * 1800); // cách nhau 1.8s
   });
 
-  // Sau 8 giây: đổi video nền
+  // Sau 7 giây: đổi video nền (intro lặp 7s)
   setTimeout(() => {
     introVideo.classList.add("hidden");
     loopVideo.classList.remove("hidden");
-  }, 7000); // video lặp lại 7s
+  }, 7000);
 
-  // Hiện 2 lời chúc sau
+  // Hiện 2 lời chúc sau lần lượt
   setTimeout(() => {
     moreGreetings.classList.remove("hidden");
     const moreLines = moreGreetings.querySelectorAll(".line");
+    moreLines[0].textContent = "🌸 Happy Birthday Milk 💖";
+    moreLines[1].textContent = "🌈 Let’s step into a dreamy world together ✨";
     moreLines.forEach((line, i) => {
       setTimeout(() => {
         line.style.opacity = "1";
@@ -58,7 +64,7 @@ function startBirthdayExperience() {
     });
   }, 8000);
 
-  // Hiện nút quà
+  // Hiện nút mở quà
   setTimeout(() => {
     giftBtn.classList.remove("hidden");
   }, 15000);
@@ -68,4 +74,3 @@ function toggleGift() {
   const gift = document.getElementById("gift-image");
   gift.classList.toggle("hidden");
 }
-"fix test script"
