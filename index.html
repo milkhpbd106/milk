@@ -2,44 +2,122 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Milk</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mở quà sinh nhật 🎁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Neue', cursive;
+      background: linear-gradient(to bottom, #fefeff, #e3e6f5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      color: #7755aa;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px dashed #ffd5ec;
+      border-radius: 20px;
+      padding: 30px 40px;
+      box-shadow: 0 0 25px rgba(200, 150, 255, 0.3);
+      text-align: center;
+      animation: fadeIn 2s ease-out;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      border: 2px solid #ffb6d9;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      background: #fff0f9;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(to right, #ffb6d9, #dcb4ff);
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 150, 200, 0.4);
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .msg {
+      margin-top: 20px;
+      color: #cc66aa;
+      font-weight: bold;
+    }
+
+    .butterfly {
+      position: absolute;
+      width: 40px;
+      animation: flutter 8s infinite ease-in-out;
+    }
+
+    .butterfly-1 { top: 20%; left: 10%; animation-delay: 0s; }
+    .butterfly-2 { top: 40%; right: 15%; animation-delay: 2s; }
+    .butterfly-3 { bottom: 20%; left: 30%; animation-delay: 4s; }
+
+    @keyframes flutter {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-  <div id="lock-screen">
-    <h2>🔒 Nhập mật khẩu để mở món quà ✨</h2>
-    <input type="password" id="password-input" placeholder="Mật khẩu"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Emoji_u1f98b.svg" class="butterfly butterfly-1" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Emoji_u1f98b.svg" class="butterfly butterfly-2" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Emoji_u1f98b.svg" class="butterfly butterfly-3" />
+
+  <div class="container">
+    <h2>🔒 Nhập mật khẩu để mở quà 🎁</h2>
+    <input type="password" id="passwordInput" placeholder="Nhập mật khẩu..." />
+    <br />
     <button onclick="checkPassword()">Mở khóa</button>
-    <p id="lock-message"></p>
+    <div class="msg" id="message"></div>
   </div>
 
-  <div id="main-content" class="hidden">
-    <audio id="bgm" src="You - Vietra.mp3" loop></audio>
+  <script src="unlock.js"></script>
+  <script>
+    const unlockDate = new Date("2025-06-10T00:00:00");
 
-    <!-- Video mở đầu -->
-    <video id="intro-video" src="milkdream.mp4" muted></video>
+    function checkPassword() {
+      const password = document.getElementById("passwordInput").value;
+      const message = document.getElementById("message");
 
-    <!-- Video nền sau cùng -->
-    <video id="loop-video" src="dreamy-video.mp4" muted class="hidden"></video>
+      if (password !== "Milk10/6") {
+        message.textContent = "Mật khẩu sai mất rồi 🥺";
+        return;
+      }
 
-    <div id="butterflies"></div>
+      const now = new Date();
+      if (now < unlockDate) {
+        message.textContent = "🎈 Món quà có thể mở vào ngày 10/6 đó nè 💖";
+        return;
+      }
 
-    <div id="greetings" class="greeting-box">
-      <p class="line"></p>
-      <p class="line"></p>
-      <p class="line"></p>
-    </div>
-
-    <div id="more-greetings" class="greeting-box hidden">
-      <p class="line"></p>
-      <p class="line"></p>
-    </div>
-
-    <button id="gift-btn" class="hidden" onclick="toggleGift()">🎁 Mở quà dành riêng cho cậu 💝</button>
-    <img id="gift-image" src="gift-image.png" class="hidden" />
-  </div>
-
-  <script src="script.js"></script>
+      window.location.href = "main.html"; // trang chính sau khi mở khoá
+    }
+  </script>
 </body>
 </html>
