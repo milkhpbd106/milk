@@ -6,7 +6,7 @@
   <title>Háp Pi Bớt Day Milk</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="script.js" defer></script>
+  <script src="script-fixed.js"></script>
 </head>
 <body>
   <!-- Màn hình nhập mật khẩu -->
@@ -52,7 +52,7 @@
         const isJune10 = (now.getMonth() + 1 === 6 && now.getDate() === 10);
 
         if (password === "Milk10/6") {
-        //  if (!isJune10) {
+          if (!isJune10) {
            alert("Món quà có thể mở vào ngày 10/6.");
             return;
           }
