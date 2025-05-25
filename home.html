@@ -1,58 +1,64 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Món quà cho Milk 🎁</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body class="main-scene">
-  <video id="mainVideo" autoplay loop muted class="background-video">
-    <source src="dreamy-video.mp4" type="video/mp4" />
-  </video>
+const unlockDate = new Date("2025-06-10T00:00:00");
 
-  <!-- Câu chúc 1 -->
-  <div id="greeting1" class="greeting fade-in-out">
-    ✨ Chúc mừng sinh nhật cậu 🎂 ✨
-  </div>
+function updateCountdown() {
+  const now = new Date();
+  const distance = unlockDate - now;
 
-  <!-- Câu chúc 2 -->
-  <div id="greeting2" class="greeting fade-in-out">
-    💖 Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ 💖
-  </div>
+  const countdownBox = document.getElementById("countdown-box");
+  const countdown = document.getElementById("countdown");
 
-  <!-- Câu chúc 3 -->
-  <div id="greeting3" class="greeting fade-in-out">
-    🌈 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 🌸
-  </div>
+  if (distance <= 0) {
+    if (countdownBox) countdownBox.style.display = "none";
+    return;
+  }
 
-  <!-- Nút mở quà -->
-  <button id="giftButton" class="gift-button hidden">🎁 Mở quà dành riêng cho cậu</button>
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
 
-  <!-- Hình ảnh quà -->
-  <div id="giftPopup" class="popup hidden">
-    <img src="gift-image.png" alt="Món quà" class="gift-image" />
-    <button onclick="closeGift()" class="close-button">Đóng lại ❌</button>
-  </div>
+  if (countdown) {
+    countdown.textContent = `${days} ngày ${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }
+}
 
-  <!-- Hiệu ứng bướm -->
-  <div class="butterfly"></div>
+setInterval(updateCountdown, 1000);
+updateCountdown();
 
-  <audio src="you-vietra.mp3" autoplay loop></audio>
-  <script>
-    // Hiển thị lời chúc từng cái một
-    setTimeout(() => document.getElementById('greeting1').classList.add('show'), 500);
-    setTimeout(() => document.getElementById('greeting2').classList.add('show'), 4000);
-    setTimeout(() => document.getElementById('greeting3').classList.add('show'), 8000);
-    setTimeout(() => document.getElementById('giftButton').classList.remove('hidden'), 12000);
+function checkPassword() {
+  const passwordInput = document.getElementById("password");
+  const message = document.getElementById("message");
+  const now = new Date();
+  const correctPassword = "Milk10/6";
 
-    // Mở/tắt quà
-    document.getElementById('giftButton').addEventListener('click', () => {
-      document.getElementById('giftPopup').classList.remove('hidden');
-    });
-    function closeGift() {
-      document.getElementById('giftPopup').classList.add('hidden');
+  if (passwordInput.value === correctPassword) {
+    if (now >= unlockDate) {
+      window.location.href = "home.html"; // sẽ trỏ đến trang quà sau khi mở khóa
+    } else {
+      message.textContent = "🌸 Món quà có thể mở vào ngày 10/6 nha cậu ơi~";
     }
-  </script>
-</body>
-</html>
+  } else {
+    message.textContent = "Sai mật khẩu mất rồi... thử lại nhé 💦";
+  }
+}
+
+// Hiệu ứng cầu vồng và bong bóng cho trang mở quà
+window.addEventListener("DOMContentLoaded", () => {
+  const isGiftPage = window.location.pathname.includes("home.html");
+  if (!isGiftPage) return;
+
+  // Cầu vồng
+  const rainbow = document.createElement("div");
+  rainbow.className = "rainbow-effect";
+  document.body.appendChild(rainbow);
+
+  // Bong bóng
+  for (let i = 0; i < 20; i++) {
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.style.left = Math.random() * 100 + "vw";
+    bubble.style.animationDuration = 4 + Math.random() * 6 + "s";
+    bubble.style.animationDelay = Math.random() * 4 + "s";
+    document.body.appendChild(bubble);
+  }
+});
