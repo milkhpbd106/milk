@@ -47,12 +47,12 @@ function startBirthdayExperience() {
     }, i * 1800);
   });
 
-  // Tan dần sau 5 giây mỗi dòng
+  // Tan dần sau 5 giây mỗi dòng (hiệu ứng fade-out mượt mà)
   setTimeout(() => {
     lines.forEach((line) => {
-      line.classList.add("fade-out");
+      line.classList.add("fade-out-smooth");
     });
-  }, 6000);
+  }, 5000);
 
   // Đổi video nền sau 7 giây
   setTimeout(() => {
