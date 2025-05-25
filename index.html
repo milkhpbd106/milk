@@ -1,33 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Milk 🎂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Món Quà Mơ Mộng ✨</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="video-container">
-    <video id="intro-video" autoplay muted playsinline>
-      <source src="milkdream.mp4" type="video/mp4" />
-    </video>
-    <audio id="bg-music" src="you-vietra.mp3" loop></audio>
-    <div id="greetings" class="hidden">
-      <p>Chúc mừng sinh nhật cậu</p>
-      <p>Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ</p>
-      <p>Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu</p>
+  <div class="background">
+    <div class="magic-dust"></div>
+    <div class="cloud cloud-left"></div>
+    <div class="cloud cloud-right"></div>
+    <div class="rainbow"></div>
+    <div class="bubble"></div>
+    <div class="container">
+      <h1 class="title">🌸 Mở Quà Mơ Mộng 💖</h1>
+      <input type="password" id="passwordInput" placeholder="Nhập mật khẩu..." />
+      <button id="unlockButton">Mở quà</button>
+      <div id="message" class="message"></div>
+      <div class="countdown-wrapper">
+        <div id="countdown"></div>
+      </div>
     </div>
-    <div id="final-message" class="hidden">
-      🌸 Happy Birthday Milk 💖 Let’s step into a dreamy world together
-    </div>
-    <button id="open-gift" class="hidden">🎁 Mở quà</button>
-    <img id="gift-image" class="hidden" src="gift-image.png" alt="Món quà nhỏ xíu"/>
   </div>
-
-  <video id="loop-video" class="hidden" autoplay muted loop playsinline>
-    <source src="dreamy-video.mp4" type="video/mp4" />
-  </video>
-
   <script src="script.js"></script>
 </body>
 </html>
