@@ -1,113 +1,33 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mở quà sinh nhật 🎁</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to bottom right, #fce4ec, #e1f5fe);
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
-    .container {
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(255, 182, 193, 0.5);
-      padding: 30px;
-      text-align: center;
-      animation: fadeIn 1.5s ease-in-out;
-    }
-    h1 {
-      color: #cc66ff;
-      margin-bottom: 15px;
-      font-size: 2rem;
-    }
-    input[type="password"] {
-      padding: 10px;
-      border-radius: 10px;
-      border: 2px solid #ffb6c1;
-      width: 200px;
-      text-align: center;
-      font-size: 1rem;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #ffccff;
-      border: none;
-      border-radius: 12px;
-      color: #663399;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 204, 255, 0.6);
-      transition: transform 0.2s ease;
-    }
-    button:hover {
-      transform: scale(1.05);
-    }
-    .message {
-      margin-top: 10px;
-      color: #ff4081;
-      font-weight: bold;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .butterfly {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Emojione_1F98B.svg/2048px-Emojione_1F98B.svg.png');
-      background-size: contain;
-      animation: fly 8s linear infinite;
-      opacity: 0.8;
-    }
-    @keyframes fly {
-      0%   { transform: translate(-50%, -50%) rotate(0deg); top: 100%; left: 0%; }
-      50%  { transform: translate(50%, -50%) rotate(180deg); top: 20%; left: 50%; }
-      100% { transform: translate(0%, -50%) rotate(360deg); top: 0%; left: 100%; }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Milk 🎂</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="butterfly"></div>
-  <div class="container">
-    <h1>🔒 Nhập mật khẩu để mở quà ✨</h1>
-    <input type="password" id="passwordInput" placeholder="Mật khẩu...">
-    <br>
-    <button onclick="checkPassword()">Mở quà 💝</button>
-    <div class="message" id="message"></div>
+  <div id="video-container">
+    <video id="intro-video" autoplay muted playsinline>
+      <source src="milkdream.mp4" type="video/mp4" />
+    </video>
+    <audio id="bg-music" src="you-vietra.mp3" loop></audio>
+    <div id="greetings" class="hidden">
+      <p>Chúc mừng sinh nhật cậu</p>
+      <p>Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ</p>
+      <p>Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu</p>
+    </div>
+    <div id="final-message" class="hidden">
+      🌸 Happy Birthday Milk 💖 Let’s step into a dreamy world together
+    </div>
+    <button id="open-gift" class="hidden">🎁 Mở quà</button>
+    <img id="gift-image" class="hidden" src="gift-image.png" alt="Món quà nhỏ xíu"/>
   </div>
-  <script>
-    function checkPassword() {
-      const input = document.getElementById("passwordInput").value.trim();
-      const message = document.getElementById("message");
-      const correctPassword = "Milk10/6";
-      const today = new Date();
-      const unlockDate = new Date("2025-06-10T00:00:00");
 
-      if (input !== correctPassword) {
-        message.textContent = "Mật khẩu không đúng rồi 😢";
-        return;
-      }
+  <video id="loop-video" class="hidden" autoplay muted loop playsinline>
+    <source src="dreamy-video.mp4" type="video/mp4" />
+  </video>
 
-      if (today < unlockDate) {
-        message.textContent = "🎁 Món quà có thể mở vào ngày 10/6 nhé 💖";
-      } else {
-        window.location.href = "main.html"; // Đổi thành file chính của con
-      }
-    }
-  </script>
-  <script src="unlock.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
