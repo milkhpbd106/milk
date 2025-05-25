@@ -12,7 +12,7 @@ function checkPassword() {
     } else {
       document.getElementById("lock-screen").style.display = "none";
       startBirthdayExperience();
-//    }
+    }
   } else {
     document.getElementById("lock-message").textContent = "Sai mật khẩu mất rồi 😢";
   }
