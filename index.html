@@ -96,7 +96,7 @@
       border: 2px solid #cc88dd;
       border-radius: 1rem;
       cursor: pointer;
-      animation: fadeIn 2s ease 7s forwards;
+      animation: fadeIn 2s ease 7s forwards, sparkle 3s infinite;
     }
 
     #giftImage {
@@ -110,6 +110,37 @@
       box-shadow: 0 0 20px rgba(255, 200, 255, 0.5);
     }
 
+    .floating-cloud {
+      position: absolute;
+      width: 120px;
+      height: 70px;
+      background: white;
+      border-radius: 50%;
+      filter: blur(2px);
+      animation: floatCloud 40s linear infinite;
+    }
+
+    .butterfly {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('butterfly.png') no-repeat center/contain;
+      animation: fly 8s linear infinite;
+    }
+
+    .rainbow {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 150px;
+      background: linear-gradient(to top, violet, indigo, blue, green, yellow, orange, red);
+      opacity: 0.5;
+      border-radius: 0 0 50% 50%;
+      animation: fadeIn 3s ease-in-out;
+    }
+
     @keyframes glowText {
       from { text-shadow: 0 0 5px #add8ff; }
       to { text-shadow: 0 0 15px #dcb8ff; }
@@ -119,10 +150,25 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    @keyframes sparkle {
+      0%, 100% { box-shadow: 0 0 5px #fff; }
+      50% { box-shadow: 0 0 15px #fff; }
+    }
+
+    @keyframes floatCloud {
+      0% { left: -150px; top: 20%; }
+      100% { left: 110%; top: 25%; }
+    }
+
+    @keyframes fly {
+      0% { transform: translate(-50px, 0); opacity: 0; }
+      50% { transform: translate(100vw, -50vh); opacity: 1; }
+      100% { transform: translate(200vw, -100vh); opacity: 0; }
+    }
   </style>
 </head>
 <body>
-  <!-- Màn hình nhập mật khẩu -->
   <div id="passwordScreen">
     <div class="password-container">
       <h2>🎀 Nhập mật khẩu để mở quà 🎁</h2>
@@ -131,9 +177,12 @@
       <button id="submitPassword" disabled>✨ Mở quà ✨</button>
       <p id="errorMessage"></p>
     </div>
+    <div class="floating-cloud" style="top: 30%; left: -100px;"></div>
+    <div class="floating-cloud" style="top: 50%; left: -200px; animation-delay: 10s;"></div>
+    <div class="butterfly" style="top: 70%; left: 10%; animation-delay: 2s;"></div>
+    <div class="rainbow"></div>
   </div>
 
-  <!-- Video và nội dung chính -->
   <div id="videoContainer">
     <video id="girlVideo" src="milkdream.mp4"></video>
     <video id="dreamyVideo" src="dreamy-video.mp4" loop muted></video>
@@ -141,7 +190,6 @@
 
   <audio id="bgMusic" src="you-vietra.mp3" loop></audio>
 
-  <!-- Nút mở quà và ảnh quà -->
   <button id="openGiftButton">🎁 Mở món quà nhỏ</button>
   <img id="giftImage" src="gift-image.jpg" alt="Món quà">
 
@@ -194,7 +242,6 @@
         return;
       }
 
-      // Thành công -> mở giao diện mơ mộng
       passwordScreen.style.display = 'none';
       videoContainer.style.display = 'block';
       girlVideo.play();
