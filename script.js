@@ -4,15 +4,15 @@ const unlockDate = new Date("2025-06-10T00:00:00");
 
 function checkPassword() {
   const input = document.getElementById("password-input").value;
-  const now = new Date();
+//  const now = new Date();
 
-  if (input === correctPassword) {
-    if (now < unlockDate) {
-      document.getElementById("lock-message").textContent = "Món quà có thể mở vào ngày 10/6 💫";
+//  if (input === correctPassword) {
+//    if (now < unlockDate) {
+//      document.getElementById("lock-message").textContent = "Món quà có thể mở vào ngày 10/6 💫";
     } else {
       document.getElementById("lock-screen").style.display = "none";
       startBirthdayExperience();
-    }
+//    }
   } else {
     document.getElementById("lock-message").textContent = "Sai mật khẩu mất rồi 😢";
   }
