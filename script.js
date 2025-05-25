@@ -64,3 +64,6 @@ submitBtn.addEventListener('click', () => {
 openGiftButton.addEventListener('click', () => {
   giftImage.style.display = giftImage.style.display === 'block' ? 'none' : 'block';
 });
+button:active {
+  transform: scale(0.95);
+}
