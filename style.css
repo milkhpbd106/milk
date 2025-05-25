@@ -1,18 +1,25 @@
 body {
-  background: linear-gradient(to bottom, #f5f7ff, #fcefff);
+  margin: 0;
+  padding: 0;
   font-family: 'Segoe UI', cursive;
+  background: linear-gradient(to bottom, #f5faff, #ffeaff);
+  overflow: hidden;
   color: #555;
 }
 
 .password-container {
-  background: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.85);
   padding: 2rem;
   border-radius: 2rem;
-  box-shadow: 0 0 20px rgba(200, 200, 255, 0.5);
+  box-shadow: 0 0 25px rgba(200, 200, 255, 0.5);
   text-align: center;
-  position: relative;
-  margin-top: 10vh;
-  animation: fadeIn 1.5s ease-in-out;
+  width: 90%;
+  max-width: 400px;
+  animation: fadeIn 1.5s ease;
 }
 
 h2 {
@@ -20,18 +27,23 @@ h2 {
   font-size: 1.8rem;
 }
 
+#countdown {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #777;
+  animation: glowText 2s ease-in-out infinite alternate;
+}
+
 input[type="password"] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 1rem;
   font-size: 1rem;
-  margin-top: 10px;
-  width: 80%;
-  max-width: 300px;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 button {
-  margin-top: 15px;
   padding: 10px 20px;
   background: linear-gradient(to right, #c6f1ff, #f5d1ff);
   border: none;
@@ -42,26 +54,60 @@ button {
   box-shadow: 0 0 10px rgba(200, 200, 255, 0.4);
 }
 
-#countdown {
+#errorMessage {
+  color: red;
   margin-top: 10px;
-  font-size: 1rem;
-  color: #777;
 }
 
-.countdown-glow {
-  animation: glowText 2s ease-in-out infinite alternate;
+#videoContainer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#openGiftButton {
+  display: none;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #ffeaff;
+  border: 2px solid #cc88dd;
+  border-radius: 1rem;
+  cursor: pointer;
+  animation: fadeIn 2s ease 7s forwards;
+}
+
+#giftImage {
+  display: none;
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 80%;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(255, 200, 255, 0.5);
 }
 
 @keyframes glowText {
-  from {
-    text-shadow: 0 0 5px #add8ff;
-  }
-  to {
-    text-shadow: 0 0 15px #dcb8ff;
-  }
+  from { text-shadow: 0 0 5px #add8ff; }
+  to { text-shadow: 0 0 15px #dcb8ff; }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
