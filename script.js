@@ -31,7 +31,6 @@ function startBirthdayExperience() {
   document.getElementById("main-content").classList.remove("hidden");
   bgm.play();
 
-  // Hiệu ứng bướm nhỏ bay nhẹ và bóng cầu vồng lặp lại
   startButterflies();
   startBubbles();
 
@@ -40,27 +39,28 @@ function startBirthdayExperience() {
   lines[1].textContent = "✨ Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ 🌸";
   lines[2].textContent = "🎁 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 🌷";
 
+  // Hiện dần từng dòng chúc trong 5s
   lines.forEach((line, i) => {
     setTimeout(() => {
       line.classList.add("fade-in");
       line.style.opacity = "1";
-    }, i * 1800);
+    }, i * 1600); // mỗi dòng cách nhau 1.6s để kịp hiển thị trong 5s
   });
 
-  // Tan dần sau 5 giây mỗi dòng (hiệu ứng fade-out mượt mà)
+  // Sau 5s + 2s chờ dòng cuối hiện xong => mờ dần tất cả trong 3s
   setTimeout(() => {
     lines.forEach((line) => {
       line.classList.add("fade-out-smooth");
     });
-  }, 5000);
+  }, 7000); // 5s hiện + 2s buffer
 
-  // Đổi video nền sau 7 giây
+  // Đổi video nền sau 7s (lặp lại intro trong lúc chờ)
   setTimeout(() => {
     introVideo.classList.add("hidden");
     loopVideo.classList.remove("hidden");
   }, 7000);
 
-  // Hiện 2 lời chúc sau lần lượt với hiệu ứng tỏa sáng
+  // Hiện 2 lời chúc tiếp theo
   setTimeout(() => {
     moreGreetings.classList.remove("hidden");
     const moreLines = moreGreetings.querySelectorAll(".line");
