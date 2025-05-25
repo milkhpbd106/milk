@@ -1,90 +1,81 @@
-/* style.css */
+/* style.css – Thơ mộng, dễ thương, tông trắng-xanh nhạt-tím hồng nhạt */
 
-/* Đặt font và màu nền */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0; padding: 0;
   background: linear-gradient(to bottom, #f0f8ff, #e6e6fa);
-  color: #333;
+  font-family: 'Quicksand', sans-serif;
+  color: #663399;
+  overflow: hidden;
   text-align: center;
-  margin: 0;
-  padding: 0;
 }
 
 /* Màn hình nhập mật khẩu */
 #passwordScreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255,255,255,0.9);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 999;
 }
-
-.password-container {
-  background-color: #fff;
-  padding: 20px 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.password-box {
+  background: #ffffff; padding: 30px; border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
-
-.password-container input {
-  padding: 10px;
-  margin-top: 10px;
-  width: 200px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.password-box .icon {
+  width: 60px; margin-bottom: 10px;
 }
-
-.password-container button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  background-color: #add8e6;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.password-box input {
+  width: 220px; padding: 10px; margin: 10px 0;
+  border: 1px solid #ccc; border-radius: 6px;
+}
+.password-box button {
+  padding: 10px 20px; background: #add8e6;
+  border: none; border-radius: 6px; cursor: pointer;
+}
+.password-box .cute-icons {
+  margin-top: 10px; font-size: 1.5em;
 }
 
 /* Video */
-video {
-  width: 100%;
-  height: auto;
+#videoContainer video {
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh; object-fit: cover;
   display: none;
+  z-index: 0;
 }
 
 /* Lời chúc */
 .message {
-  position: absolute;
-  top: 10%;
-  left: 50%;
+  position: absolute; top: 12%; left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px 30px;
-  border-radius: 10px;
-  font-size: 1.2em;
-  opacity: 1;
+  background: rgba(255,255,255,0.7);
+  padding: 20px 30px; border-radius: 10px;
+  font-size: 1.3rem; color: #663399;
+  z-index: 10; pointer-events: none;
   transition: opacity 3s ease;
 }
 
-/* Nút mở quà */
+/* Quà */
+#giftSection {
+  position: absolute; bottom: 10%; left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
 #openGiftButton {
-  display: none;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #dda0dd;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  display: none; padding: 12px 24px;
+  background: #fff0fb; border: 2px solid #dab0ff;
+  border-radius: 20px; cursor: pointer;
+}
+#giftImage {
+  display: none; margin-top: 15px;
+  width: 250px; border-radius: 12px;
+  box-shadow: 0 0 30px rgba(255,180,255,0.6);
 }
 
-/* Ảnh món quà */
-#giftImage {
-  display: none;
-  margin-top: 20px;
-  width: 200px;
-  height: auto;
-  border-radius: 10px;
+/* Hiệu ứng fade-in/out cho lời chúc */
+.fade-in-out {
+  opacity: 1;
+}
+.fade-in-out.hide {
+  opacity: 0;
 }
