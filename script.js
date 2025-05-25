@@ -1,67 +1,68 @@
-// script.js
+const passwordScreen = document.getElementById('passwordScreen');
+const passwordInput = document.getElementById('passwordInput');
+const submitPassword = document.getElementById('submitPassword');
+const errorMessage = document.getElementById('errorMessage');
+const girlVideo = document.getElementById('girlVideo');
+const dreamyVideo = document.getElementById('dreamyVideo');
+const music = document.getElementById('bgMusic');
+const giftBtn = document.getElementById('openGiftButton');
+const giftImg = document.getElementById('giftImage');
 
-const pwdBox    = document.getElementById('passwordScreen');
-const pwdInput  = document.getElementById('passwordInput');
-const btnOpen   = document.getElementById('submitPassword');
-const errMsg    = document.getElementById('errorMessage');
-const bgVid     = document.getElementById('dreamyVideo');
-const bgMusic   = document.getElementById('bgMusic');
-const msgCont   = document.getElementById('messageContainer');
-const giftBtn   = document.getElementById('openGiftButton');
-const giftImage = document.getElementById('giftImage');
-
-// 3 câu chúc đầu
-const msgs1 = [
+const messages1 = [
   "🎉 Chúc mừng sinh nhật cậu 🎂",
   "🌟 Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ 💫",
   "🎁 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 💖"
 ];
-// 2 câu chúc sau
-const msgs2 = [
+
+const messages2 = [
   "🌸 Happy Birthday Milk 💖",
   "Let’s step into a dreamy world together 🌈"
 ];
 
-// Hiện message từng câu
-async function showMsgs(list, showMs, fadeMs) {
-  // tạo 1 container mới
-  const box = document.createElement('div');
-  box.className = 'message';
-  box.innerHTML = list.map(m=>`<p>${m}</p>`).join('');
-  msgCont.appendChild(box);
-  // fade in
-  await new Promise(r=>setTimeout(r, 50));
-  box.style.opacity = 1;
-  // chờ showMs
-  await new Promise(r=>setTimeout(r, showMs));
-  // fade out
-  box.style.opacity = 0;
-  await new Promise(r=>setTimeout(r, fadeMs));
-  box.remove();
+function showMessages(messages, duration = 3000, fadeOut = 3000) {
+  return new Promise((resolve) => {
+    const container = document.createElement("div");
+    container.classList.add("message");
+    container.innerHTML = messages.map(msg => `<div>${msg}</div>`).join("");
+    document.body.appendChild(container);
+
+    setTimeout(() => {
+      container.style.opacity = "0";
+      setTimeout(() => {
+        container.remove();
+        resolve();
+      }, fadeOut);
+    }, duration);
+  });
 }
 
-// Bỏ kiểm tra ngày 10/6 để test ngay
-btnOpen.addEventListener('click', async () => {
-  if (pwdInput.value === 'Milk10/6') {
-    // ẩn màn hình password
-    pwdBox.style.display = 'none';
-    // play video + nhạc
-    bgVid.style.display = 'block';
-    bgVid.play(); 
-    bgMusic.play();
-    // show 3 msgs đầu: 7s hiện + 3s fade
-    await showMsgs(msgs1, 7000, 3000);
-    // show 2 msgs sau: 3s hiện + 3s fade
-    await showMsgs(msgs2, 3000, 3000);
-    // show nút quà
-    giftBtn.style.display = 'inline-block';
+submitPassword.addEventListener('click', () => {
+  const password = passwordInput.value;
+  if (password === 'Milk10/6') {
+    passwordScreen.style.display = 'none';
+    startSequence();
   } else {
-    errMsg.textContent = 'Sai mật khẩu rồi đó 😢';
+    errorMessage.textContent = "Sai mật khẩu rồi đó 😢";
   }
 });
 
-// toggling quà
+async function startSequence() {
+  music.play();
+  girlVideo.style.display = "block";
+  girlVideo.play();
+
+  await showMessages(messages1, 7000, 3000);
+
+  girlVideo.addEventListener("ended", async () => {
+    girlVideo.style.display = "none";
+    dreamyVideo.style.display = "block";
+    dreamyVideo.play();
+
+    await showMessages(messages2, 3000, 3000);
+    giftBtn.style.display = "inline-block";
+  });
+}
+
 giftBtn.addEventListener('click', () => {
-  giftImage.style.display =
-    giftImage.style.display === 'block' ? 'none' : 'block';
+  giftImg.style.display = giftImg.style.display === "block" ? "none" : "block";
 });
