@@ -125,3 +125,42 @@ function startBubbles() {
     setTimeout(() => bubble.remove(), 5000);
   }, 5000);
 }
+const unlockDate = new Date("2025-06-10T00:00:00");
+
+function updateCountdown() {
+  const now = new Date();
+  const distance = unlockDate - now;
+
+  if (distance <= 0) {
+    const countdownBox = document.getElementById("countdown-box");
+    if (countdownBox) countdownBox.style.display = "none";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
+
+  const countdown = document.getElementById("countdown");
+  if (countdown) {
+    countdown.textContent =
+      `${days} ngày ${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+window.addEventListener("DOMContentLoaded", () => {
+  if (!document.getElementById("countdown-box")) {
+    const box = document.createElement("div");
+    box.id = "countdown-box";
+    box.style.textAlign = "center";
+    box.style.fontSize = "1.5rem";
+    box.style.marginTop = "20px";
+    box.style.color = "#bb99ff";
+    box.innerHTML = `🎁 Đếm ngược đến ngày mở quà 🎈<br/><span id="countdown" style="font-weight: bold;"></span>`;
+    document.body.prepend(box);
+  }
+});
