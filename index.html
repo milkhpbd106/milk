@@ -1,134 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Háp Pi Bớt Day Milk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Milk 🎂</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="script.js" defer ></script>
 </head>
 <body>
   <!-- Màn hình nhập mật khẩu -->
- <div id="passwordScreen">
-  <div class="password-container">
-    <p>Nhập mật khẩu để mở món quà 🎁</p>
-    <input type="password" id="passwordInput" placeholder="Mật khẩu">
-    <button id="submitPassword">Mở quà</button>
-    <p id="errorMessage" style="color: red;"></p>
-  </div>
-</div>
-
-
-  <video id="firstVideo" src="milkdream.mp4" muted></video>
-  <video id="secondVideo" src="dreamy-video.mp4" loop muted></video>
-
-  <audio id="bgm" src="you-vietra.mp3" loop></audio>
-
-  <!-- 3 lời chúc đầu -->
-  <div id="message1" class="message fade-in-out-1" style="display:none">
-    <p>🎂 Chúc mừng sinh nhật cậu 🎉</p>
-    <p>✨ Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ 🌸</p>
-    <p>🎁 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu 💖</p>
+  <div id="passwordScreen">
+    <div class="password-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/4202/4202840.png" class="icon" alt="lock"/>
+      <h2>🔐 Nhập mật khẩu để mở quà 🎁</h2>
+      <input type="password" id="passwordInput" placeholder="Mật khẩu..."/>
+      <button id="submitPassword">Mở khóa</button>
+      <p id="errorMessage"></p>
+      <div class="cute-icons">🌸🦋💫🧁🌈</div>
+    </div>
   </div>
 
-  <!-- 2 lời chúc sau -->
-  <div id="message2" class="message fade-in-out-2" style="display:none">
-    <p>🌸 Happy Birthday Milk 💖</p>
-    <p>Let’s step into a dreamy world together ✨</p>
+  <!-- Video cô gái ngắm mây -->
+  <div id="videoContainer">
+    <video id="girlVideo" src="milkdream.mp4" muted></video>
+    <video id="dreamyVideo" src="dreamy-video.mp4" loop muted></video>
   </div>
 
-  <button id="openGiftButton">🎁 Mở món quà dành riêng cho cậu</button>
-  <img id="giftImage" src="gift-image.png" alt="Món quà nhỏ xíu" />
+  <!-- Nhạc nền -->
+  <audio id="bgMusic" src="you-vietra.mp3" loop></audio>
 
-  <script>
-    window.addEventListener('load', () => {
-      const submitPasswordBtn = document.getElementById('submitPassword');
-      const passwordInput = document.getElementById('passwordInput');
+  <!-- Nút mở quà & hình quà -->
+  <div id="giftSection">
+    <button id="openGiftButton">🎁 Món quà dành riêng cho cậu</button>
+    <img id="giftImage" src="gift-image.png" alt="Món quà nhỏ xíu"/>
+  </div>
 
-      submitPasswordBtn.addEventListener('click', () => {
-        const password = passwordInput.value;
-        const now = new Date();
-        const isJune10 = (now.getMonth() + 1 === 6 && now.getDate() === 10);
-
-        if (password === "Milk10/6") {
-          if (!isJune10) {
-           alert("Món quà có thể mở vào ngày 10/6.");
-            return;
-          }
-          document.getElementById('passwordScreen').style.display = 'none';
-          launchDream();
-        } else {
-          alert("Sai mật khẩu!");
-        }
-      });
-
-      function launchDream() {
-        const bgm = document.getElementById('bgm');
-        const firstVideo = document.getElementById('firstVideo');
-        const secondVideo = document.getElementById('secondVideo');
-        const message1 = document.getElementById('message1');
-        const message2 = document.getElementById('message2');
-        const giftImage = document.getElementById('giftImage');
-        const openGiftButton = document.getElementById('openGiftButton');
-
-        firstVideo.style.display = 'block';
-        firstVideo.play();
-
-        // Phát nhạc
-        bgm.volume = 0.8;
-        bgm.play();
-
-        // Giai đoạn 1: video đầu + nhạc + 3 lời chúc đầu
-        message1.style.display = 'block';
-
-        setTimeout(() => {
-          message1.style.opacity = '0';
-        }, 7000);
-
-        setTimeout(() => {
-          message1.style.display = 'none';
-        }, 10000);
-
-        // Giai đoạn 2: chuyển video dreamy loop + 2 lời chúc tiếp
-        setTimeout(() => {
-          firstVideo.style.transition = 'opacity 2s ease';
-          firstVideo.style.opacity = '0';
-
-          setTimeout(() => {
-            firstVideo.style.display = 'none';
-            secondVideo.style.display = 'block';
-            secondVideo.style.opacity = '0';
-            secondVideo.play();
-
-            setTimeout(() => {
-              secondVideo.style.transition = 'opacity 2s ease';
-              secondVideo.style.opacity = '1';
-            }, 50);
-
-            message2.style.display = 'block';
-
-            setTimeout(() => {
-              message2.style.opacity = '0';
-            }, 3000);
-
-            setTimeout(() => {
-              message2.style.display = 'none';
-            }, 6000);
-
-            // Giai đoạn 3: hiện nút mở quà
-            setTimeout(() => {
-              openGiftButton.style.display = 'block';
-            }, 6000);
-          }, 2000);
-        }, 10000);
-
-        // Tương tác nút mở quà
-        openGiftButton.addEventListener('click', () => {
-          giftImage.style.display = (giftImage.style.display === 'block') ? 'none' : 'block';
-        });
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
