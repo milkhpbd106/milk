@@ -7,38 +7,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="butterfly butterfly1"></div>
-  <div class="butterfly butterfly2"></div>
-  <div class="butterfly butterfly3"></div>
-
-  <div class="sparkle sparkle1"></div>
-  <div class="sparkle sparkle2"></div>
-  <div class="sparkle sparkle3"></div>
-
-  <!-- Mây bồng bềnh -->
-<div class="floating-cloud cloud1"></div>
-<div class="floating-cloud cloud2"></div>
-<div class="floating-cloud cloud3"></div>
-
-<!-- Cầu vồng mơ mộng -->
-
-
-<!-- Bướm bay nhẹ -->
-<div class="butterfly butterfly1"></div>
-<div class="butterfly butterfly2"></div>
-<div class="butterfly butterfly3"></div>
-
-<!-- Bụi sáng lấp lánh -->
-<div class="sparkle sparkle1"></div>
-<div class="sparkle sparkle2"></div>
-<div class="sparkle sparkle3"></div>
- <div id="passwordScreen">
-    <div id="videoContainer" class="visible" style="display: none;"> <!-- Hiệu ứng mơ mộng (ẩn ban đầu) -->
+  <!-- Hiệu ứng mơ mộng (ẩn ban đầu) -->
 <div id="dream-effects" style="display: none;">
   <div class="floating-cloud cloud1"></div>
   <div class="floating-cloud cloud2"></div>
   <div class="floating-cloud cloud3"></div>
 
+  <div class="soft-rainbow"></div>
+
   <div class="butterfly butterfly1"></div>
   <div class="butterfly butterfly2"></div>
   <div class="butterfly butterfly3"></div>
@@ -46,6 +22,7 @@
   <div class="sparkle sparkle1"></div>
   <div class="sparkle sparkle2"></div>
   <div class="sparkle sparkle3"></div>
+</div>
 
   <!-- Mây bồng bềnh -->
 <div class="floating-cloud cloud1"></div>
@@ -64,7 +41,9 @@
 <div class="sparkle sparkle1"></div>
 <div class="sparkle sparkle2"></div>
 <div class="sparkle sparkle3"></div>
-      
+
+  <div id="passwordScreen">
+    <div id="videoContainer" class="visible" style="display: none;">
   <video id="girlVideo" src="milkdream.mp4" loop muted></video>
   <video id="dreamyVideo" src="dreamy-video.mp4" loop muted style="display: none;"></video>
 </div>
@@ -72,7 +51,7 @@
 <audio id="bgMusic" src="you-vietra.mp3" loop></audio>
 
 <button id="openGiftButton" style="display: none;">🎁 Mở món quà nhỏ</button>
-<img id="giftImage" src="gift-image.pnj" alt="Món quà" style="display: none;">
+<img id="giftImage" src="gift-image.jpg" alt="Món quà" style="display: none;">
 
     <div class="password-container">
       <h2>🎀 Nhập mật khẩu để mở quà 🎁</h2>
@@ -139,7 +118,7 @@
           errorMessage.textContent = '🎁 Món quà có thể mở vào ngày 10/6 nhé!';
         }
       } else {
-        errorMessage.textContent = '🥺 Sai mật khẩu rồi nè!';
+        errorMessage.textContent = '❌ Sai mật khẩu rồi nè!';
       }
     });
 
