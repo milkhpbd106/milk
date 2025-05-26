@@ -50,7 +50,7 @@ button {
   padding: 10px 25px;
   border: none;
   border-radius: 12px;
-  background-color: #dcb8ff;
+  background-color: # ffffff; # ccffff
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -59,7 +59,7 @@ button {
 }
 
 button:hover {
-  background-color: #c7a6f7;
+  background-color: #ccffff;
   transform: scale(1.05);
 }
 
