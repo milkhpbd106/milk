@@ -1,142 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Milk Birthday</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom, #f8faff, #e8f0ff);
-    }
-    #main {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-    }
-    video.bg-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -1;
-    }
-    .message {
-      position: absolute;
-      top: 35%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      font-family: 'Dancing Script', cursive;
-      font-size: 3em;
-      color: white;
-      text-shadow: 0 0 10px rgba(0,255,255,0.6);
-      opacity: 0;
-      animation: fadeIn5s 5s ease forwards 2s, fadeOut3s 3s ease forwards 7s;
-    }
-    .final-message {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.8em;
-      color: white;
-      text-shadow: 0 0 10px rgba(173, 216, 230, 0.6);
-      opacity: 0;
-      animation: fadeIn3s 3s ease forwards 11s;
-    }
-    .gift-box {
-      position: absolute;
-      top: 75%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      z-index: 10;
-    }
-    .gift-box:hover {
-      transform: translate(-50%, -50%) scale(1.05);
-    }
-    .gift-image {
-      display: none;
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      max-width: 80vw;
-      border-radius: 20px;
-      box-shadow: 0 0 20px white;
-      z-index: 20;
-    }
-    .butterfly {
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      background: radial-gradient(circle, white, #d0f0ff);
-      border-radius: 50%;
-      opacity: 0.7;
-      animation: floatButterfly 8s linear infinite;
-      filter: blur(1px);
-      box-shadow: 0 0 10px rgba(255,255,255,0.8);
-    }
-    @keyframes floatButterfly {
-      0% { transform: translateY(0) translateX(0); opacity: 0; }
-      10% { opacity: 1; }
-      50% { transform: translateY(-100px) translateX(50px); }
-      90% { opacity: 1; }
-      100% { transform: translateY(-200px) translateX(-30px); opacity: 0; }
-    }
-    @keyframes fadeIn5s {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes fadeOut3s {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-    @keyframes fadeIn3s {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Milk</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="main">
-    <video class="bg-video" id="bgVideo" src="dreamy-video.mp4" autoplay loop muted></video>
+  <!-- Hiệu ứng mơ mộng (ẩn ban đầu) -->
+<div id="dream-effects" style="display: none;">
+  <div class="floating-cloud cloud1"></div>
+  <div class="floating-cloud cloud2"></div>
+  <div class="floating-cloud cloud3"></div>
 
-    <!-- Lời chúc đầu tiên -->
-    <div class="message">Chúc Mừng Sinh Nhật Cậu
-      💖</div>
+  <div class="soft-rainbow"></div>
 
-    <!-- Lời chúc tiếp theo -->
-    <div class="final-message">🌸 Happy Birthday Milk 💖<br/>Let’s step into a dreamy world together</div>
+  <div class="butterfly butterfly1"></div>
+  <div class="butterfly butterfly2"></div>
+  <div class="butterfly butterfly3"></div>
 
-    <!-- Ảnh quà -->
-    <img id="giftImage" class="gift-image" src="gift-image.png" alt="Gift" />
+  <div class="sparkle sparkle1"></div>
+  <div class="sparkle sparkle2"></div>
+  <div class="sparkle sparkle3"></div>
+</div>
 
-    <!-- Hộp quà -->
-    <img src="giftbox-whiteblue.png" alt="Gift Box" class="gift-box" onclick="openGift()" />
+  <!-- Mây bồng bềnh -->
+<div class="floating-cloud cloud1"></div>
+<div class="floating-cloud cloud2"></div>
+<div class="floating-cloud cloud3"></div>
 
-    <!-- Bướm tròn lấp lánh -->
-    <div class="butterfly" style="top: 80%; left: 20%; animation-delay: 0s;"></div>
-    <div class="butterfly" style="top: 85%; left: 40%; animation-delay: 2s;"></div>
-    <div class="butterfly" style="top: 90%; left: 60%; animation-delay: 4s;"></div>
+<!-- Cầu vồng mơ mộng -->
+<div class="soft-rainbow"></div>
+
+<!-- Bướm bay nhẹ -->
+<div class="butterfly butterfly1"></div>
+<div class="butterfly butterfly2"></div>
+<div class="butterfly butterfly3"></div>
+
+<!-- Bụi sáng lấp lánh -->
+<div class="sparkle sparkle1"></div>
+<div class="sparkle sparkle2"></div>
+<div class="sparkle sparkle3"></div>
+
+  <div id="passwordScreen">
+    <div id="videoContainer" class="visible" style="display: none;">
+  <video id="girlVideo" src="milkdream.mp4" loop muted></video>
+  <video id="dreamyVideo" src="dreamy-video.mp4" loop muted style="display: none;"></video>
+</div>
+
+<audio id="bgMusic" src="you-vietra.mp3" loop></audio>
+
+<button id="openGiftButton" style="display: none;">🎁 Mở món quà nhỏ</button>
+<img id="giftImage" src="gift-image.jpg" alt="Món quà" style="display: none;">
+
+    <div class="password-container">
+      <h2>🎀 Nhập mật khẩu để mở quà 🎁</h2>
+      <div id="countdown">⏳ Đếm ngược đến 10/6: <span id="timeLeft"></span></div>
+      <input type="password" id="passwordInput" placeholder="🔐 Nhập mật khẩu" disabled>
+      <button id="submitPassword" disabled>✨ Mở quà ✨</button>
+      <p id="errorMessage"></p>
+    </div>
+    <div class="floating-cloud" style="top: 30%; left: -100px;"></div>
+    <div class="floating-cloud" style="top: 50%; left: -200px; animation-delay: 10s;"></div>
+    <div class="butterfly" style="top: 70%; left: 10%; animation-delay: 2s;"></div>
+    <div class="rainbow"></div>
   </div>
 
-  <!-- Nhạc nền -->
-  <audio src="You-Vietra.mp3" autoplay loop></audio>
+  <div id="videoContainer">
+    <video id="girlVideo" src="milkdream.mp4"></video>
+    <video id="dreamyVideo" src="dreamy-video.mp4" loop muted></video>
+  </div>
+
+  <audio id="bgMusic" src="you-vietra.mp3" loop></audio>
+
+  <button id="openGiftButton">🎁 Mở món quà nhỏ</button>
+  <img id="giftImage" src="gift-image.jpg" alt="Món quà">
 
   <script>
-    function openGift() {
-      const gift = document.getElementById('giftImage');
-      gift.style.display = gift.style.display === 'block' ? 'none' : 'block';
+    const passwordInput = document.getElementById('passwordInput');
+    const submitPassword = document.getElementById('submitPassword');
+    const errorMessage = document.getElementById('errorMessage');
+    const passwordScreen = document.getElementById('passwordScreen');
+    const videoContainer = document.getElementById('videoContainer');
+    const girlVideo = document.getElementById('girlVideo');
+    const dreamyVideo = document.getElementById('dreamyVideo');
+    const bgMusic = document.getElementById('bgMusic');
+    const openGiftButton = document.getElementById('openGiftButton');
+    const giftImage = document.getElementById('giftImage');
+    const countdown = document.getElementById('timeLeft');
+
+    const unlockDate = new Date('2025-06-10T00:00:00');
+    const interval = setInterval(() => {
+      const now = new Date();
+      const diff = unlockDate - now;
+
+      if (diff <= 0) {
+        countdown.textContent = '🎉 Đã đến lúc mở quà rồi!';
+        passwordInput.disabled = false;
+        submitPassword.disabled = false;
+        clearInterval(interval);
+      } else {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        countdown.textContent = `${days} ngày ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }, 1000);
+
+    submitPassword.addEventListener('click', () => {
+      const password = passwordInput.value;
+      if (password === 'Milk10/6') {
+        const now = new Date();
+        if (now >= unlockDate) {
+          startBirthdaySequence();
+        } else {
+          errorMessage.textContent = '🎁 Món quà có thể mở vào ngày 10/6 nhé!';
+        }
+      } else {
+        errorMessage.textContent = '❌ Sai mật khẩu rồi nè!';
+      }
+    });
+
+    function startBirthdaySequence() {
+      passwordScreen.style.display = 'none';
+      videoContainer.style.display = 'block';
+      girlVideo.play();
+      bgMusic.play();
+      girlVideo.loop = true;
+
+      const messageDiv = document.createElement('div');
+      messageDiv.style.position = 'absolute';
+      messageDiv.style.top = '20%';
+      messageDiv.style.left = '50%';
+      messageDiv.style.transform = 'translateX(-50%)';
+      messageDiv.style.textAlign = 'center';
+      messageDiv.style.fontSize = '1.5rem';
+      messageDiv.style.color = '#fff';
+      messageDiv.style.fontWeight = 'bold';
+      messageDiv.style.textShadow = '0 0 10px #dcb8ff';
+      messageDiv.style.opacity = '0';
+      messageDiv.style.transition = 'opacity 5s ease';
+      messageDiv.innerHTML = `
+        <p>🎂 Chúc mừng sinh nhật cậu</p>
+        <p>✨ Cảm ơn vì đã luôn là ánh sáng dịu dàng trong thế giới của tớ</p>
+        <p>🎁 Hãy nhấn vào đây để mở món quà nhỏ xíu tớ dành riêng cho cậu</p>
+      `;
+      document.body.appendChild(messageDiv);
+
+      setTimeout(() => {
+        messageDiv.style.opacity = '1';
+      }, 1000);
+
+      setTimeout(() => {
+        messageDiv.style.transition = 'opacity 3s ease';
+        messageDiv.style.opacity = '0';
+      }, 8000);
+
+      setTimeout(() => {
+        girlVideo.style.display = 'none';
+        dreamyVideo.style.display = 'block';
+        dreamyVideo.play();
+
+        const message2 = document.createElement('div');
+        message2.style.position = 'absolute';
+        message2.style.top = '25%';
+        message2.style.left = '50%';
+        message2.style.transform = 'translateX(-50%)';
+        message2.style.textAlign = 'center';
+        message2.style.fontSize = '1.3rem';
+        message2.style.color = '#fff';
+        message2.style.fontWeight = 'bold';
+        message2.style.textShadow = '0 0 10px #ccf';
+        message2.style.opacity = '0';
+        message2.style.transition = 'opacity 3s ease';
+        message2.innerHTML = `
+          <p>🌸 Happy Birthday Milk</p>
+          <p>💖 Let’s step into a dreamy world together</p>
+        `;
+        document.body.appendChild(message2);
+
+        setTimeout(() => {
+          message2.style.opacity = '1';
+        }, 500);
+
+        setTimeout(() => {
+          message2.style.opacity = '0';
+        }, 3500);
+
+        setTimeout(() => {
+          openGiftButton.style.display = 'block';
+        }, 7000);
+      }, 11000);
+
+      openGiftButton.addEventListener('click', () => {
+        giftImage.style.display = giftImage.style.display === 'block' ? 'none' : 'block';
+      });
+
+      function addFloatingButterflies() {
+        for (let i = 0; i < 3; i++) {
+          const butterfly = document.createElement('div');
+          butterfly.className = 'butterfly';
+          butterfly.style.top = `${30 + i * 20}%`;
+          butterfly.style.left = `${10 + i * 25}%`;
+          butterfly.style.animationDelay = `${i * 3}s`;
+          document.body.appendChild(butterfly);
+        }
+      }
+
+      function addSoftRainbow() {
+        const rainbow = document.createElement('div');
+        rainbow.className = 'rainbow';
+        rainbow.style.bottom = '0';
+        document.body.appendChild(rainbow);
+      }
+
+      addFloatingButterflies();
+      addSoftRainbow();
     }
   </script>
 </body>
