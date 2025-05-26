@@ -50,7 +50,7 @@ button {
   padding: 10px 25px;
   border: none;
   border-radius: 12px;
-  background-color: # ffffff; # ccffff
+  background-color: # ffffff; #ccffff
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -106,7 +106,7 @@ button:hover {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: #fff;
+  background: #ffffff;
 }
 
 video {
@@ -129,7 +129,7 @@ video {
   padding: 15px 30px;
   font-size: 1.2rem;
   background: linear-gradient(135deg, #ffffff, #ccf0ff, #fbefff);
-  color: # 00E5EE;# ccffff
+  color: # 00E5EE; #ccffff
   border-radius: 30px;
   box-shadow: 0 0 15px rgba(200, 180, 255, 0.5);
   animation: floatButton 3s ease-in-out infinite;
