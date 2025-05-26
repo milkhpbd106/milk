@@ -173,7 +173,7 @@ video {
   position: absolute;
   width: 40px;
   height: 40px;
-  background: url('butterfly.png') no-repeat;
+  background: url('butterfly-new.png') no-repeat;
   background-size: contain;
   animation: butterflyFly 20s ease-in-out infinite;
   z-index: 2;
@@ -192,17 +192,24 @@ video {
 /* Cầu vồng mờ mờ */
 .soft-rainbow {
   position: absolute;
-  bottom: 0;
+  bottom: -40px;
   left: 50%;
-  width: 300px;
-  height: 150px;
-  background: radial-gradient(circle at center, #ffccff, #ccffff, #ffffcc);
-  border-radius: 50%;
+  width: 600px;
+  height: 300px;
+  background: conic-gradient(from 180deg at center, #ffd6ff, #e0ffff, #ffffcc, #ffd6ff);
+  border-radius: 50% / 100%;
   transform: translateX(-50%);
-  opacity: 0.3;
-  animation: glow 4s ease-in-out infinite alternate;
+  opacity: 0.35;
+  filter: blur(1px);
+  animation: rainbowPulse 6s ease-in-out infinite alternate;
   z-index: 1;
 }
+
+@keyframes rainbowPulse {
+  0% { opacity: 0.25; transform: translateX(-50%) scale(1); }
+  100% { opacity: 0.4; transform: translateX(-50%) scale(1.05); }
+}
+
 
 @keyframes glow {
   from { opacity: 0.2; }
@@ -250,6 +257,7 @@ video {
 
 /* Đếm ngược */
 #countdown {
+  animation: pulseLight 1s infinite;
   font-size: 24px;
   font-weight: bold;
   margin-top: 20px;
@@ -259,14 +267,8 @@ video {
   padding: 10px 20px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 10px rgba(200, 200, 255, 0.6);
-}
+  box-shadow: 0 0 10px rgba(200, 200, 255, 0...
+.sparkle4 { top: 20%; left: 70%; animation-delay: 2.5s; }
+.sparkle5 { top: 80%; left: 50%; animation-delay: 4s; }
+.sparkle6 { top: 40%; left: 10%; animation-delay: 3.5s; }
 
-#videoContainer video:first-of-type {
-  animation: loopOnce 7s;
-}
-
-@keyframes loopOnce {
-  0% { opacity: 1; }
-  100% { opacity: 1; }
-}
