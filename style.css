@@ -162,7 +162,7 @@ video {
 /* Mây bồng bềnh */
 .floating-cloud {
   position: absolute;
-  background: url('images.jpeg') no-repeat;
+  background: url('images.pnj') no-repeat;
   background-size: contain;
   width: 200px;
   height: 100px;
