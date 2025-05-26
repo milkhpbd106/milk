@@ -14,7 +14,6 @@
   <div class="sparkle sparkle1"></div>
   <div class="sparkle sparkle2"></div>
   <div class="sparkle sparkle3"></div>
-</div>
 
   <!-- Mây bồng bềnh -->
 <div class="floating-cloud cloud1"></div>
@@ -47,7 +46,6 @@
   <div class="sparkle sparkle1"></div>
   <div class="sparkle sparkle2"></div>
   <div class="sparkle sparkle3"></div>
-</div>
 
   <!-- Mây bồng bềnh -->
 <div class="floating-cloud cloud1"></div>
@@ -102,7 +100,7 @@
   <script>
     const passwordInput = document.getElementById('passwordInput');
     const submitPassword = document.getElementById('submitPassword');
-    const errorMessage = document.getElementById('errorMessage');
+  //  const errorMessage = document.getElementById('errorMessage');
     const passwordScreen = document.getElementById('passwordScreen');
     const videoContainer = document.getElementById('videoContainer');
     const girlVideo = document.getElementById('girlVideo');
@@ -119,8 +117,8 @@
 
       if (diff <= 0) {
         countdown.textContent = '🎉 Đã đến lúc mở quà rồi!';
-        passwordInput.disabled = false;
-        submitPassword.disabled = false;
+  //      passwordInput.disabled = false;
+ //       submitPassword.disabled = false;
         clearInterval(interval);
       } else {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -141,7 +139,7 @@
           errorMessage.textContent = '🎁 Món quà có thể mở vào ngày 10/6 nhé!';
         }
       } else {
-        errorMessage.textContent = '❌ Sai mật khẩu rồi nè!';
+        errorMessage.textContent = '🥺 Sai mật khẩu rồi nè!';
       }
     });
 
