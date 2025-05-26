@@ -100,7 +100,7 @@
   <script>
     const passwordInput = document.getElementById('passwordInput');
     const submitPassword = document.getElementById('submitPassword');
-  //  const errorMessage = document.getElementById('errorMessage');
+    const errorMessage = document.getElementById('errorMessage');
     const passwordScreen = document.getElementById('passwordScreen');
     const videoContainer = document.getElementById('videoContainer');
     const girlVideo = document.getElementById('girlVideo');
@@ -117,7 +117,7 @@
 
       if (diff <= 0) {
         countdown.textContent = '🎉 Đã đến lúc mở quà rồi!';
-  //      passwordInput.disabled = false;
+        passwordInput.disabled = false;
  //       submitPassword.disabled = false;
         clearInterval(interval);
       } else {
