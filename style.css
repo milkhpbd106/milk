@@ -1,6 +1,17 @@
 /* style.css */
 body {
   margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  background-image: url("cloud-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+  margin: 0;
   padding: 0;
   overflow: hidden;
   font-family: 'Quicksand', sans-serif;
