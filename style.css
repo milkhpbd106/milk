@@ -229,30 +229,6 @@ video {
   50% { opacity: 1; transform: scale(1.3); }
 }
 
-/* Hiệu ứng bụi sáng khi mở quà */
-.sparkle-burst {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: white;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: sparkleBurst 1s ease-out forwards;
-  box-shadow: 0 0 6px white;
-  opacity: 0.8;
-}
-
-@keyframes sparkleBurst {
-  0% {
-    transform: scale(0.5);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(6);
-    opacity: 0;
-  }
-}
-
 /* Hiệu ứng bụi phép bay quanh đếm ngược */
 .magic-dust {
   position: absolute;
@@ -283,7 +259,24 @@ video {
   padding: 10px 20px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 10px rgba(200, 200, 255, 0.4);
-  position: relative;
-  z-index: 3;
+  box-shadow: 0 0 10px rgba(200, 200, 255, 0.6);
+}
+
+/* Hai đám mây gần bộ đếm ngược */
+.cloud-near-countdown {
+  position: absolute;
+  width: 120px;
+  height: 60px;
+  background: url('cloud.png') no-repeat center center;
+  background-size: contain;
+  opacity: 0.6;
+  z-index: 1;
+  animation: floatCloud 6s ease-in-out infinite;
+}
+.cloud-left { top: 65%; left: 30%; }
+.cloud-right { top: 65%; right: 30%; }
+
+@keyframes floatCloud {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
