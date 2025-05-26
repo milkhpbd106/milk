@@ -1,7 +1,7 @@
 const passwordInput = document.getElementById('passwordInput');
 const submitBtn = document.getElementById('submitPassword');
 const countdown = document.getElementById('timeLeft');
-const errorMessage = document.getElementById('errorMessage');
+//const errorMessage = document.getElementById('errorMessage');
 const passwordScreen = document.getElementById('passwordScreen');
 const videoContainer = document.getElementById('videoContainer');
 const girlVideo = document.getElementById('girlVideo');
@@ -37,12 +37,12 @@ submitBtn.addEventListener('click', () => {
   const unlockDate = new Date('2025-06-10T00:00:00');
 
   if (input !== 'Milk10/6') {
-    errorMessage.innerText = '❌ Mật khẩu sai rồi nè!';
+    errorMessage.innerText = '🥺 Mật khẩu sai rồi nè!';
     return;
   }
 
   if (now < unlockDate) {
-    errorMessage.innerText = '📅 Món quà có thể mở vào ngày 10/6 nhé!';
+    errorMessage.innerText = '💫 Món quà có thể mở vào ngày 10/6 nhé!';
     return;
   }
 
